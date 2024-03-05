@@ -1,0 +1,8 @@
+<div class="panel">
+  <div class="panel-grid" cdkDropList (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let app of apps" class="panel-app" cdkDrag>
+      <i class="panel-app-icon fas fa-app"></i>
+      <span class="panel-app-label">{{ app.name }}</span>
+    </div>
+  </div>
+</div>

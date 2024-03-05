@@ -1,0 +1,6 @@
+<div class="uis-layout-page-header-inner">
+  <h1 class="uis-layout-page-title">
+    {{ title | translate }} <small>{{ subtitle }}</small>
+  </h1>
+  <breadcrumb *ngIf="!hideBreadcrumb" [nav]="nav"></breadcrumb>
+</div>

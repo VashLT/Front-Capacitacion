@@ -1,0 +1,121 @@
+<ng-container *ngIf="dataSource">
+  <mat-tree
+    [dataSource]="dataSource"
+    [treeControl]="treeControl"
+    class="tree__sidemenu"
+  >
+    <!-- no tiene hijos -->
+    <mat-tree-node
+      *matTreeNodeDef="let node"
+      matTreeNodePadding
+      [matTreeNodePaddingIndent]="deltaPadding"
+      matTreeNodeToggle
+      [style.display]="node.visible ? 'flex' : 'none'"
+      matRipple
+      routerLinkActive="active-route"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="ruta(node)"
+    >
+      <div
+        [class]="
+          'shadow-c shadow-' +
+          node.level +
+          (node.id === selectedIdNode ? ' shadow-s' : '')
+        "
+      ></div>
+      <mat-icon class="node-icon">{{ node.icon }}</mat-icon>
+      <a [title]="node.name | sentenceCase: true">
+        {{
+          node.name.length > menuNameMaxLength
+            ? (node.name | slice: 0:menuNameMaxLength | sentenceCase: true) +
+              "..."
+            : (node.name | sentenceCase: true)
+        }}
+      </a>
+    </mat-tree-node>
+    <!-- tiene hijos -->
+    <mat-tree-node
+      *matTreeNodeDef="let node; when: hasChild"
+      matTreeNodePadding
+      [matTreeNodePaddingIndent]="deltaPadding"
+      [style.display]="node.visible ? 'flex' : 'none'"
+      matRipple
+      routerLinkActive="active-route"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [ngClass]="{ 'active-parent': isParent(node.name) }"
+      (click)="toggleNode(node)"
+    >
+      <div [class]="'shadow-c shadow-' + node.level"></div>
+      <mat-icon class="node-icon">{{ node.icon }}</mat-icon>
+      <mat-label [title]="node.name | sentenceCase: true">
+        {{
+          node.name.length > menuNameMaxLength
+            ? (node.name | slice: 0:menuNameMaxLength | sentenceCase: true) +
+              "..."
+            : (node.name | sentenceCase: true)
+        }}
+      </mat-label>
+      <button
+        mat-icon-button
+        [attr.aria-label]="'Toggle ' + (node.name | sentenceCase: true)"
+        class="tree__node--toggle"
+        [disableRipple]="true"
+      >
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{
+            treeControl.isExpanded(node)
+              ? "keyboard_arrow_up"
+              : "keyboard_arrow_down"
+          }}
+        </mat-icon>
+      </button>
+    </mat-tree-node>
+    <!-- nodo raíz -->
+    <mat-tree-node
+      *matTreeNodeDef="let node; when: isRoot"
+      matTreeNodePadding
+      [matTreeNodePaddingIndent]="deltaPadding"
+      class="tree__node--root"
+      [style.display]="node.visible ? 'flex' : 'none'"
+      matRipple
+      routerLinkActive="active-route"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="ruta(node)"
+      [ngClass]="{ 'active-parent': isParent(node.name) }"
+      (click)="toggleNode(node)"
+    >
+      <div
+        [class]="
+          'shadow-c shadow-' +
+          node.level +
+          (node.id === selectedIdNode ? ' shadow-s' : '')
+        "
+      ></div>
+      <mat-icon class="node-icon">{{ node.icon }}</mat-icon>
+      <mat-label [title]="node.name | sentenceCase: true">
+        {{
+          node.name.length > menuNameMaxLength
+            ? (node.name | slice: 0:menuNameMaxLength | sentenceCase: true) +
+              "..."
+            : (node.name | sentenceCase: true)
+        }}
+      </mat-label>
+      <ng-container *ngIf="node.expandable">
+        <button
+          mat-icon-button
+          [attr.aria-label]="'Toggle ' + (node.name | sentenceCase: true)"
+          class="tree__node--toggle"
+          [disableRipple]="true"
+        >
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{
+              treeControl.isExpanded(node)
+                ? "keyboard_arrow_up"
+                : "keyboard_arrow_down"
+            }}
+          </mat-icon>
+        </button>
+      </ng-container>
+    </mat-tree-node>
+  </mat-tree>
+</ng-container>

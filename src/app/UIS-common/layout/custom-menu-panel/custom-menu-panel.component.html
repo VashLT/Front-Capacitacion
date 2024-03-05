@@ -1,0 +1,212 @@
+<ng-container>
+  <mat-card appearance="outlined" class="header">
+    <mat-card-header class="c-title">
+      <mat-card-title>
+        {{ "GENERAL_PAGES_FROM_LAYOUT.CUSTOM_PANEL.TITLE" | translate }}
+      </mat-card-title>
+    </mat-card-header>
+  </mat-card>
+</ng-container>
+
+<div class="container">
+  <mat-card appearance="outlined" class="body-sheet modules">
+    <mat-card-content>
+      <h2>{{ "MENU_PANEL.MANAGEMENT.MODULES_TITLE" | translate }}</h2>
+      <p>{{ "MENU_PANEL.MANAGEMENT.MODULES_DESCRIPTION" | translate }}</p>
+      <div class="submodule-list">
+        <mat-accordion cdkDropList (cdkDropListDropped)="drop($event)">
+          <mat-expansion-panel
+            class="example-box"
+            cdkDrag
+            *ngFor="let module of modules"
+            [expanded]="module.expanded"
+            (opened)="onModuleChange(module)"
+            (closed)="onModuleClosed(module)"
+          >
+            <div class="drag-placeholder" *cdkDragPlaceholder></div>
+            <mat-expansion-panel-header>
+              <mat-icon class="drag-indicator">drag_indicator</mat-icon>
+              <span>{{ module.nombre }}</span>
+            </mat-expansion-panel-header>
+
+            <ng-template matExpansionPanelContent>
+              <mat-checkbox
+                (change)="selectAllCheckboxes(module)"
+                [checked]="module.allChecked"
+                color="primary"
+              >
+                {{ "MENU_PANEL.MANAGEMENT.SELECT_ALL" | translate }}
+              </mat-checkbox>
+              <br />
+              <span>
+                <ul>
+                  <li *ngFor="let submodule of module.hijos">
+                    <mat-checkbox
+                      [(ngModel)]="submodule.checked"
+                      (change)="onSubmoduleChange(module)"
+                      color="primary"
+                      class="submodule-check"
+                    >
+                      {{ submodule.nombre }}
+                    </mat-checkbox>
+                  </li>
+                </ul>
+              </span>
+            </ng-template>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </mat-card-content>
+
+    <div></div>
+  </mat-card>
+
+  <mat-card appearance="outlined" class="body-sheet menus">
+    <mat-card-content>
+      <div class="menus-wrapper">
+        <div class="example-container all-menus">
+          <h2>{{ "MENU_PANEL.MANAGEMENT.MENUS" | translate }}</h2>
+          <p>{{ "MENU_PANEL.MANAGEMENT.MENUS_DESCRIPTION" | translate }}</p>
+
+          <div
+            class="search-bar-container"
+            *ngIf="selectedModule; else defaultImg"
+          >
+            <mat-form-field appearance="fill" class="custom-mat-form-field">
+              <mat-label>{{
+                "MENU_PANEL.MANAGEMENT.SEARCH_BAR" | translate
+              }}</mat-label>
+              <input
+                matInput
+                type="text"
+                [(ngModel)]="searchTerm"
+                (input)="applyFilter()"
+                [disabled]="!selectedModule"
+                [placeholder]="
+                  'MENU_PANEL.MANAGEMENT.SEARCH_PLACEHOLDER' | translate
+                "
+              />
+
+              <span matSuffix mat-icon-button>
+                <mat-icon>search</mat-icon>
+              </span>
+            </mat-form-field>
+          </div>
+
+          <ng-template #defaultImg>
+            <div class="drag-image">
+              <img src="assets\images\drag.svg" alt="drag-and-drop-image" />
+            </div>
+          </ng-template>
+
+          <div
+            id="allMenus"
+            cdkDropList
+            #allMenus="cdkDropList"
+            class="module-apps-container"
+            [cdkDropListData]="moduleApps"
+            [cdkDropListConnectedTo]="menuPanel"
+            (cdkDropListDropped)="transferAppToList($event)"
+            cdkDropListSortingDisabled
+          >
+            <div *ngIf="selectedModule" class="module-apps">
+              <div *ngFor="let menu of filteredModuleApps" cdkDrag>
+                <a
+                  class="grid-item"
+                  [href]="menu.ruta"
+                  [title]="menu.nombre"
+                  target="_blank"
+                >
+                  <mat-icon class="drag-indicator small"
+                    >drag_indicator</mat-icon
+                  >
+                  <mat-icon class="grid-icon"> {{ menu.icono }}</mat-icon>
+                  <span class="panel-app-label">{{ menu.nombre }}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-container menus-panel-wrapper">
+          <h2>{{ "MENU_PANEL.MANAGEMENT.MENUS_PANEL_TITLE" | translate }}</h2>
+          <p>
+            {{ "MENU_PANEL.MANAGEMENT.MENUS_PANEL_DESCRIPTION" | translate }}
+          </p>
+          <div
+            class="panel-header"
+            [ngClass]="{ 'selected-module': selectedModule }"
+          >
+            <mat-icon>
+              {{ selectedModule?.icono ?? "school" }}
+            </mat-icon>
+            <br />
+            <div>
+              {{
+                selectedModule?.nombre ??
+                  "MENU_PANEL.MANAGEMENT.MENUS_PANEL_DEFAULT" | translate
+              }}
+            </div>
+          </div>
+
+          <div *ngIf="!selectedModule">
+            <div class="menus-panel">
+              <a class="v2 disabled-app" *ngFor="let mock of mocker">
+                <mat-icon>
+                  {{ "widgets" }}
+                </mat-icon>
+                <span>{{ "MENU_PANEL.MANAGEMENT.SHORTCUT" | translate }}</span>
+              </a>
+            </div>
+          </div>
+
+          <div
+            id="menuPanel"
+            cdkDropList
+            #menuPanel="cdkDropList"
+            [cdkDropListData]="menuPanelApps"
+            [cdkDropListConnectedTo]="allMenus"
+            (cdkDropListDropped)="transferAppToList($event)"
+            [cdkDropListEnterPredicate]="checkFullList"
+          >
+            <div *ngIf="selectedModule" class="menus-panel">
+              <div *ngFor="let menu of menuPanelApps" cdkDrag>
+                <a
+                  class="v2"
+                  [href]="menu.ruta"
+                  title="{{ menu.nombre }}"
+                  target="_blank"
+                >
+                  <mat-icon class="drag-indicator">drag_indicator</mat-icon>
+                  <mat-icon class=".material-icons color_grey">
+                    {{ menu.icono }}</mat-icon
+                  >
+                  <span class="panel-app-label">{{ menu.nombre }}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btns-section">
+        <button
+          mat-raised-button
+          type="button"
+          class="btn cancel-btn"
+          (click)="cancel()"
+        >
+          {{ "MENU_PANEL.MANAGEMENT.CANCEL_CONFIRMATION" | translate }}
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn"
+          (click)="saveChanges()"
+        >
+          <span> {{ "BUTTONS_NAMES.SAVE_CHANGES" | translate }}</span>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

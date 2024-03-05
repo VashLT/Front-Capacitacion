@@ -1,0 +1,12 @@
+//Descomentarear cuando migremos a shadow dom.
+// @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+// @import url('https://fonts.googleapis.com/css2?family=Open+Sans&amp;display=swap');
+
+::ng-deep app-entry-component-mfe {
+  @import "../../../node_modules/flexboxgrid/dist/flexboxgrid.min.css";
+  @import "../../../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+  @import "../../../node_modules/swiper/swiper-bundle.min.css";
+  @import "../../../node_modules/@uis/uis-lib/styles.scss";
+  @import "../../styles.scss";
+  @import "../../app/UIS-common/layout/style.scss";
+}

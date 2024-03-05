@@ -1,0 +1,20 @@
+@use "@angular/material" as mat;
+@use "sass:map";
+//Función para crear el tema.
+@function define-theme($config) {
+    $theme: mat.define-light-theme($config);
+    $color: map.get($theme, color);
+    $color: map.merge(
+      $color,
+      (
+        // background: $theme-background-palette,
+        foreground: $theme-foreground-palette
+      )
+    );
+    @return map.merge(
+      $theme,
+      (
+        color: $color,
+      )
+    );
+  }

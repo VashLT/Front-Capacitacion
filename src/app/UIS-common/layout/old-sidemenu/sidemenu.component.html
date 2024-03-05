@@ -1,0 +1,308 @@
+<h1>Xd</h1>
+<mat-form-field appearance="fill" class="search">
+  <mat-label>Buscar menú</mat-label>
+  <input
+    matInput
+    name="filtro_valor"
+    [(ngModel)]="filtro_valor"
+    (ngModelChange)="searchMenu($event)"
+    placeholder="Digite menú"
+    oninput="this.value=this.value.replace(/[^a-zA-Z-äöüÄÖÜ ñÑ]/g,'');"
+  />
+  <button *ngIf="filtro_valor" matSuffix mat-icon-button (click)="reset()">
+    <mat-icon> cancel </mat-icon>
+  </button>
+  <mat-icon *ngIf="!filtro_valor" matSuffix>search</mat-icon>
+</mat-form-field>
+<div class="bloque">
+  <ng-container
+    [ngTemplateOutlet]="menuStaticTpl"
+    [ngTemplateOutletContext]="{
+      menuStatic: menuStatic$ | async,
+      parentRoute: [],
+      level: 0
+    }"
+  >
+  </ng-container>
+
+  <ng-template
+    #menuStaticTpl
+    let-menuStatic="menuStatic"
+    let-parentRoute="parentRoute"
+    let-level="level"
+  >
+    <ul
+      navAccordion
+      class="uis-layout-sidemenu {{
+        level > 0 ? 'uis-layout-sidemenu-sub' : ''
+      }} level-{{ level }}"
+    >
+      <li
+        navAccordionItem
+        class="uis-layout-sidemenu-item"
+        routerLinkActive="active-route"
+        [routerLinkActiveOptions]="{ exact: true }"
+        *ngFor="let menuItem of menuStatic"
+        [group]="menuItem.route"
+        [type]="menuItem.type"
+      >
+        <a
+          class="uis-layout-sidemenu-link uis-base-link"
+          *ngIf="menuItem.type === 'base'"
+          matRipple
+          [matRippleDisabled]="!ripple"
+        >
+          <ng-container
+            [ngTemplateOutlet]="linkTypeTpl"
+            [ngTemplateOutletContext]="{ item: menuItem, level: level }"
+          >
+          </ng-container>
+        </a>
+      </li>
+    </ul>
+  </ng-template>
+  <ng-container
+    [ngTemplateOutlet]="menuListTpl"
+    [ngTemplateOutletContext]="{
+      menuList: menu$ | async,
+      parentRoute: [],
+      level: 0
+    }"
+  >
+  </ng-container>
+
+  <ng-template
+    #menuListTpl
+    let-menuList="menuList"
+    let-parentRoute="parentRoute"
+    let-level="level"
+  >
+    <ul
+      navAccordion
+      class="uis-layout-sidemenu {{
+        level > 0 ? 'uis-layout-sidemenu-sub' : ''
+      }} level-{{ level }}"
+    >
+      <li
+        navAccordionItem
+        class="uis-layout-sidemenu-item"
+        routerLinkActive="active-route"
+        [routerLinkActiveOptions]="{ exact: true }"
+        *ngFor="let menuItem of menuList"
+        [group]="menuItem.route"
+        [type]="menuItem.type"
+      >
+        <a
+          class="uis-layout-sidemenu-link"
+          [routerLink]="menuItem.route"
+          *ngIf="menuItem.type === 'link'"
+          matRipple
+          [matRippleDisabled]="!ripple"
+        >
+          <ng-container
+            [ngTemplateOutlet]="linkTypeTpl"
+            [ngTemplateOutletContext]="{ item: menuItem, level: level }"
+          >
+          </ng-container>
+        </a>
+        <a
+          class="uis-layout-sidemenu-link"
+          [href]="menuItem.route"
+          *ngIf="menuItem.type === 'extLink'"
+          matRipple
+          [matRippleDisabled]="!ripple"
+        >
+          <ng-container
+            [ngTemplateOutlet]="linkTypeTpl"
+            [ngTemplateOutletContext]="{ item: menuItem, level: level }"
+          >
+          </ng-container>
+        </a>
+
+        <a
+          class="uis-layout-sidemenu-link"
+          [href]="menuItem.route"
+          target="_blank"
+          *ngIf="menuItem.type === 'extTabLink'"
+          matRipple
+          [matRippleDisabled]="!ripple"
+        >
+          <ng-container
+            [ngTemplateOutlet]="linkTypeTpl"
+            [ngTemplateOutletContext]="{ item: menuItem, level: level }"
+          >
+          </ng-container>
+        </a>
+
+        <a
+          navAccordionToggle
+          class="uis-layout-sidemenu-toggle"
+          [ngClass]="{ 'active-parent': this.menu.isParent(menuItem.name) }"
+          *ngIf="menuItem.type === 'sub'"
+          matRipple
+          [matRippleDisabled]="!ripple"
+        >
+          <ng-container
+            [ngTemplateOutlet]="linkTypeTpl"
+            [ngTemplateOutletContext]="{ item: menuItem, level: level }"
+          >
+          </ng-container>
+        </a>
+
+        <ng-container
+          [ngTemplateOutlet]="menuListTpl"
+          [ngTemplateOutletContext]="{
+            menuList: menuItem.children,
+            parentRoute: parentRoute.concat([menuItem.route]),
+            level: level + 1
+          }"
+        >
+        </ng-container>
+      </li>
+    </ul>
+  </ng-template>
+
+  <ng-template #linkTypeTpl let-item="item" let-level="level">
+    <div>
+      <mat-icon class="menu-icon" *ngIf="level === 0">{{ item.icon }}</mat-icon>
+      <span class="menu-name">{{ item.name }}</span>
+      <span class="menu-label bg-{{ item.label.color }}" *ngIf="item.label">
+        {{ item.label.value }}
+      </span>
+      <span class="menu-badge bg-{{ item.badge.color }}" *ngIf="item.badge">
+        {{ item.badge.value }}
+      </span>
+    </div>
+    <mat-icon
+      class="menu-caret"
+      *ngIf="item.type !== 'link' && item.type !== 'base'"
+    >
+      {{ item.type === "sub" ? "arrow_drop_down" : "launch" }}
+    </mat-icon>
+  </ng-template>
+  <mat-error *ngIf="checkSearch()" class="verification">
+    No se encontraron coincidencias.
+  </mat-error>
+</div>
+<a class="user-menu" *ngIf="showMenu()">
+  <mat-icon>star</mat-icon> Funciones Adicionales</a
+>
+<ng-container
+  [ngTemplateOutlet]="menuUserListTpl"
+  [ngTemplateOutletContext]="{
+    menuUserList: userMenus$ | async,
+    parentRoute: [],
+    level: 0
+  }"
+>
+</ng-container>
+
+<ng-template
+  #menuUserListTpl
+  let-menuUserList="menuUserList"
+  let-parentRoute="parentRoute"
+  let-level="level"
+>
+  <ul
+    navAccordion
+    class="uis-layout-sidemenu {{
+      level > 0 ? 'uis-layout-sidemenu-sub' : ''
+    }} level-{{ level }}"
+  >
+    <li
+      navAccordionItem
+      class="uis-layout-sidemenu-item"
+      routerLinkActive="active-route"
+      [routerLinkActiveOptions]="{ exact: true }"
+      *ngFor="let menuItem of menuUserList"
+      [group]="menuItem.route"
+      [type]="menuItem.type"
+    >
+      <a
+        class="uis-layout-sidemenu-link"
+        [routerLink]="menuItem.route"
+        *ngIf="menuItem.type === 'link'"
+        matRipple
+        [matRippleDisabled]="!ripple"
+      >
+        <ng-container
+          [ngTemplateOutlet]="linkTypeTpl"
+          [ngTemplateOutletContext]="{ item: menuItem, level: level }"
+        >
+        </ng-container>
+      </a>
+      <a
+        class="uis-layout-sidemenu-link"
+        [href]="menuItem.route"
+        *ngIf="menuItem.type === 'extLink'"
+        matRipple
+        [matRippleDisabled]="!ripple"
+      >
+        <ng-container
+          [ngTemplateOutlet]="linkTypeTpl"
+          [ngTemplateOutletContext]="{ item: menuItem, level: level }"
+        >
+        </ng-container>
+      </a>
+
+      <a
+        class="uis-layout-sidemenu-link"
+        [href]="menuItem.route"
+        target="_blank"
+        *ngIf="menuItem.type === 'extTabLink'"
+        matRipple
+        [matRippleDisabled]="!ripple"
+      >
+        <ng-container
+          [ngTemplateOutlet]="linkTypeTpl"
+          [ngTemplateOutletContext]="{ item: menuItem, level: level }"
+        >
+        </ng-container>
+      </a>
+
+      <a
+        navAccordionToggle
+        class="uis-layout-sidemenu-toggle"
+        [ngClass]="{ 'active-parent': this.menu.isParent(menuItem.name) }"
+        *ngIf="menuItem.type === 'sub'"
+        matRipple
+        [matRippleDisabled]="!ripple"
+      >
+        <ng-container
+          [ngTemplateOutlet]="linkTypeTpl"
+          [ngTemplateOutletContext]="{ item: menuItem, level: level }"
+        >
+        </ng-container>
+      </a>
+
+      <ng-container
+        [ngTemplateOutlet]="menuListTpl"
+        [ngTemplateOutletContext]="{
+          menuList: menuItem.children,
+          parentRoute: parentRoute.concat([menuItem.route]),
+          level: level + 1
+        }"
+      >
+      </ng-container>
+    </li>
+  </ul>
+</ng-template>
+<ng-template #linkTypeTpl let-item="item" let-level="level">
+  <mat-icon class="menu-icon" *ngIf="level === 0">{{ item.icon }}</mat-icon>
+  <span class="menu-name">{{ item.name }}</span>
+  <span class="menu-label bg-{{ item.label.color }}" *ngIf="item.label">
+    {{ item.label.value }}
+  </span>
+  <span class="menu-badge bg-{{ item.badge.color }}" *ngIf="item.badge">
+    {{ item.badge.value }}
+  </span>
+  <mat-icon
+    class="menu-caret"
+    *ngIf="item.type !== 'link' && item.type !== 'base'"
+  >
+    {{ item.type === "sub" ? "arrow_drop_down" : "launch" }}
+  </mat-icon>
+</ng-template>
+<mat-error *ngIf="checkMenuSearch()" class="verification">
+  No se encontraron coincidencias.
+</mat-error>

@@ -1,0 +1,46 @@
+<p
+  class="text"
+  [innerHTML]="
+    'GENERAL_PAGES_FROM_LAYOUT.CHANGE_PASSWORD.SAVE_CHANGES' | translate
+  "
+></p>
+<form class="edit-profile-form" [formGroup]="form">
+  <mat-form-field class="field">
+    <mat-icon matPrefix>lock</mat-icon>
+    <mat-icon
+      matSuffix
+      style="cursor: pointer"
+      (click)="hideCurrentPassword = !hideCurrentPassword"
+      >{{ hideCurrentPassword ? "visibility_off" : "visibility" }}
+    </mat-icon>
+    <mat-label>
+      {{
+        "GENERAL_PAGES_FROM_LAYOUT.CHANGE_PASSWORD.NEW_PASSWORD" | translate
+      }}</mat-label
+    >
+    <input
+      matInput
+      [placeholder]="
+        'GENERAL_PAGES_FROM_LAYOUT.CHANGE_PASSWORD.PLACEHOLDER_NEW_PASSWORD'
+          | translate
+      "
+      [type]="hideCurrentPassword ? 'password' : 'text'"
+      formControlName="currentPassword"
+      required
+    />
+    <mat-error
+      *ngIf="
+        form.controls.currentPassword.touched &&
+        !form.controls.currentPassword.value.length
+      "
+    >
+      {{ "FORMS_ERROR_MESSAGES.REQUIRED_FIELD" | translate }}
+    </mat-error>
+    <mat-error *ngIf="form.controls.currentPassword.hasError('pattern')">
+      {{
+        "MODULES.LOGIN.RESET_PASSWORD.FIELDS.PASSWORD.ERRORS.REQUIREMENTS"
+          | translate
+      }}
+    </mat-error>
+  </mat-form-field>
+</form>

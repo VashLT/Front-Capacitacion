@@ -1,0 +1,149 @@
+<mat-toolbar class="uis-layout-toolbar">
+  <div class="left-buttons">
+    <button
+      mat-icon-button
+      class="uis-layout-toolbar-button vbutton"
+      *ngIf="showToggle && opened && !smallScreen"
+      (click)="toggleSidenav.emit()"
+      matTooltip="Ocultar/Mostrar menú"
+    >
+      <mat-icon>{{ opened ? "menu_open" : "menu" }}</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
+      class="uis-layout-toolbar-button vbutton"
+      *ngIf="showToggle && smallScreen"
+      (click)="toggleSidenav.emit()"
+      matTooltip="Ocultar/Mostrar menú"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
+      class="uis-layout-toolbar-button vbutton"
+      *ngIf="smallScreen"
+      (click)="goHome()"
+      [matTooltip]="'GENERAL_PAGES_FROM_LAYOUT.SEO.HOME_TITLE' | translate"
+    >
+      <mat-icon>home</mat-icon>
+    </button>
+
+    <app-branding *ngIf="showBranding"></app-branding>
+  </div>
+  <div class="right-buttons">
+    <button
+      mat-icon-button
+      class="uis-layout-toolbar-button vbutton"
+      matTooltip="Accesos directos"
+      (click)="toggleMenuPanel($event)"
+      aria-expanded="false"
+      aria-controls="menus-panel"
+    >
+      <mat-icon>apps</mat-icon>
+    </button>
+
+    <!-- <button
+      mat-icon-button
+      class="uis-layout-toolbar-button ls-sm-hiden"
+      title="Pantalla completa"
+      (click)="toggleFullscreen()"
+    >
+      <mat-icon>fullscreen</mat-icon>
+    </button> -->
+    <!-- <button
+      mat-icon-button
+      class="uis-layout-toolbar-button"
+      title="Ayuda"
+      (click)="help()"
+    >
+      <mat-icon>help_outline</mat-icon>
+    </button> -->
+    <!-- <button mat-button [matMenuTriggerFor]="menu">
+      <img
+        class="uis-layout-user-panel-avatar"
+        [src]="imageService.b64UserImage$.getValue()"
+        alt="avatar"
+        width="50"
+      />
+    </button> -->
+
+    <button
+      mat-icon-button
+      class="uis-layout-toolbar-button vbutton"
+      matTooltip="Configuraciones"
+      [matMenuTriggerFor]="menu"
+      aria-expanded="false"
+      aria-controls="menus-panel"
+    >
+      <mat-icon>settings</mat-icon>
+    </button>
+
+    <!-- <button
+      mat-icon-button
+      class="uis-layout-toolbar-button vbutton"
+      [matTooltip]="'BUTTONS_NAMES.LOGOUT' | translate"
+      aria-expanded="false"
+      aria-controls="menus-panel"
+    >
+      <mat-icon>notifications</mat-icon>
+    </button> -->
+
+    <button
+      mat-icon-button
+      class="uis-layout-toolbar-button vbutton"
+      [matTooltip]="'BUTTONS_NAMES.LOGOUT' | translate"
+      (click)="logout()"
+      aria-expanded="false"
+      aria-controls="menus-panel"
+    >
+      <mat-icon>logout</mat-icon>
+    </button>
+
+    <!--  Menu Panel  -->
+    <app-menu-panel
+      [fShowMenuPanel]="showMenuPanel"
+      [menuPanel]="menuPanel"
+      (toggleMenuConfig)="toggleMenuConfig.emit()"
+      (toggleMenuPanel)="toggleMenuPanel($event)"
+    >
+    </app-menu-panel>
+
+    <mat-menu #menu="matMenu">
+      <h3 class="conf-title">
+        {{ "Configuraciones" | translate }}
+      </h3>
+      <button class="color-text" mat-menu-item (click)="editProfile()">
+        <!-- <mat-icon class="icon-20">account_circle</mat-icon> -->
+        <span>
+          {{
+            "GENERAL_PAGES_FROM_LAYOUT.TOP_NAV_BAR_MESSAGES.EDIT_PROFILE.MODAL.TITLE"
+              | translate
+          }}
+        </span>
+      </button>
+      <button mat-menu-item (click)="changePassword()" class="color-text">
+        <!-- <mat-icon class="icon-20">lock_reset</mat-icon> -->
+        <span>
+          {{
+            "GENERAL_PAGES_FROM_LAYOUT.TOP_NAV_BAR_MESSAGES.CHANGE_PASSWORD.TITLE"
+              | translate
+          }}
+        </span>
+      </button>
+      <button mat-menu-item class="color-text" (click)="setDefaultRole()">
+        <!-- <mat-icon class="icon-20">admin_panel_settings</mat-icon> -->
+        <span>
+          {{
+            "GENERAL_PAGES_FROM_LAYOUT.SET_DEFAULT_ROL.MODAL.TITLE" | translate
+          }}
+        </span>
+      </button>
+      <!-- <button mat-menu-item title="Cerrar sesión" (click)="logout()">
+        <mat-icon class="icon-20">exit_to_app</mat-icon>
+        {{ "GENERAL_PAGES_FROM_LAYOUT.LOGOUT_MODAL.TITLE" | translate }}
+      </button> -->
+    </mat-menu>
+  </div>
+</mat-toolbar>

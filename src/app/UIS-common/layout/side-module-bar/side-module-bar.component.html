@@ -1,0 +1,80 @@
+<div class="sidebar-layout" *ngIf="data">
+  <button
+    mat-icon-button
+    (click)="toggleSidenav.emit()"
+    class="uis-layout-toolbar-button vbutton smooth"
+    *ngIf="!opened"
+    matTooltip="Ocultar/Mostrar menú"
+  >
+    <mat-icon>{{ opened ? "menu_open" : "menu" }}</mat-icon>
+  </button>
+
+  <app-branding [ngClass]="{ 'button-hidden': opened }"></app-branding>
+  <div>
+    <div *ngIf="data.length === numeroMenus + 1">
+      <div *ngFor="let menu of data">
+        <button
+          mat-icon-button
+          class="item-modules-ls"
+          [class.selected]="menu.NOMBRE === selectedLosetaName"
+          (click)="loadMenus(menu)"
+        >
+          <mat-icon>{{ iconParser(menu.ICONO).value }}</mat-icon>
+          <span class="menu-name">{{ menu.NOMBRE }}</span>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="data.length < numeroMenus + 1">
+      <div *ngFor="let menu of data">
+        <button
+          [class.selected]="menu.NOMBRE === selectedLosetaName"
+          mat-icon-button
+          class="item-modules-ls"
+          (click)="loadMenus(menu)"
+        >
+          <mat-icon>{{ iconParser(menu.ICONO).value }}</mat-icon>
+          <span class="menu-name">{{ menu.NOMBRE }}</span>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="data.length > numeroMenus + 1">
+      <div *ngFor="let menu of data.slice(0, numeroMenus)">
+        <!-- Display the first 6 menus -->
+        <button
+          [class.selected]="menu.NOMBRE === selectedLosetaName"
+          mat-icon-button
+          class="item-modules-ls"
+          (click)="loadMenus(menu)"
+        >
+          <mat-icon>{{ iconParser(menu.ICONO).value }}</mat-icon>
+          <span class="menu-name">{{ menu.NOMBRE }}</span>
+        </button>
+      </div>
+      <!-- Show "Otros" button when there are more than 6 menus -->
+      <div *ngIf="data.length > numeroMenus">
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="moreMenu"
+          class="item-modules-ls"
+        >
+          <mat-icon>more_horiz</mat-icon>
+          {{ "GENERAL_PAGES_FROM_LAYOUT.MORE" | translate }}
+        </button>
+        <mat-menu #moreMenu="matMenu">
+          <div class="menu-grid-ls">
+            <button
+              mat-icon-button
+              class="item-modules-ls"
+              *ngFor="let menu of data.slice(numeroMenus)"
+              [class.selected]="menu === selectedLoseta"
+              (click)="loadMenus(menu)"
+            >
+              <mat-icon>{{ iconParser(menu.ICONO).value }}</mat-icon>
+              <span class="menu-name">{{ menu.NOMBRE }}</span>
+            </button>
+          </div>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+@import '../style/variables';
+
+@mixin uis-layout-sidebar-theme($theme) {
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .uis-layout-sidebar-header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 200px;
+    color: mat-color($foreground, text);
+    background: mat-color($background, dialog);
+    border-bottom: 1px solid mat-color($foreground, divider);
+  }
+
+  .uis-layout-user-panel {
+    border-bottom: 1px solid mat-color($foreground, divider);
+  }
+}

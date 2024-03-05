@@ -1,0 +1,15 @@
+@mixin mini-scroll {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(172, 172, 172);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+    border-radius: 3px;
+    &:hover {
+      background: var(--main-color-9);
+    }
+  }
+}

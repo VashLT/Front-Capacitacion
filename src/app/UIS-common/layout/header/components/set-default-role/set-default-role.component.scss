@@ -1,0 +1,36 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: larger;
+    padding-bottom: 1rem;
+    & span {
+        color: var(--tonos-tenues-textos);
+    }
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    height: 22px;
+    text-align: left;
+    font: normal normal normal 16px/22px Open Sans;
+    letter-spacing: 0px;
+    color: var(--color-text);
+    opacity: 1;
+    margin-bottom: 1rem;
+    & p {
+        margin: 0;
+    }
+}
+.info > mat-icon {
+    color: var(--main-color);
+}
+.info > p {
+    display: inline-block;
+}
+
+mat-form-field {
+    padding-top: 1rem;
+    width: 100%;
+}

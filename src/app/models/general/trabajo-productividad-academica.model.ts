@@ -1,0 +1,37 @@
+export interface TrabajoProductividadAcademicaDTO {
+  id: number;
+  idPersona: number;
+  porcentajeParticipacion: number;
+  idModalidadProdIntelect: number;
+  nombreModalidadProdIntelect: string;
+  titulo: string;
+  idIdioma: number;
+  nombreIdioma: string;
+  fechaTerminacion: Date;
+  fechaHoraSustentacion: Date | string;
+  fechaResolucion: Date;
+  fechaRegistro: Date;
+  descripcion: string;
+  codigoIfxTrabajoProd: number;
+  nombreAdicionalTrabajo: string;
+  codigoTrabajo: number;
+  numeroTrabajo: number;
+  identificadorTrabajo: string;
+  enlaceTrabajo: string;
+  enlacePublindex: string;
+  idCiudadTrabajo: number;
+  nombreCiudadTrabajo: string;
+  nombreDepartamento: string;
+  nombrePais: string;
+  idCategoriaRevista: number;
+  nombreCategoriaRevista: string;
+  volumenRevista: number;
+  paginaInicio: number;
+  paginaFin: number;
+  idAdjunto: null;
+  idEstadoValidacion: number;
+  nombreEstadoValidacion: string;
+  siglaEstadoValidacion: string;
+  nombreTipoModalidad: string;
+  adjuntoFile: File;
+}

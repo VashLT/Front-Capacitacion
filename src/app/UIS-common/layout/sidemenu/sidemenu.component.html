@@ -1,0 +1,63 @@
+<!-- rol menus -->
+<ng-container *ngIf="headerMenus">
+  <div class="sidemenu__menu--section" routerLinkActive="active-route">
+    <a [routerLink]="pathHome">
+      <mat-icon>{{ headerMenus?.icon }}</mat-icon>
+      <mat-label>{{ headerMenus?.name }}</mat-label>
+    </a>
+  </div>
+</ng-container>
+
+<mat-form-field appearance="outline" class="search-menu">
+  <mat-label>{{
+    "GENERAL_PAGES_FROM_LAYOUT.SIDEMENU.MENU_FILTER_NAME" | translate
+  }}</mat-label>
+  <input
+    matInput
+    name="menusFilter"
+    [formControl]="menusFilter"
+    [placeholder]="
+      'GENERAL_PAGES_FROM_LAYOUT.SIDEMENU.MENU_FILTER_PLACEHOLDER' | translate
+    "
+    oninput="this.value=this.value.replace(/[^a-zA-Z-äöüÄÖÜ ñÑÀ-ú]/g,'');"
+  />
+  <button
+    *ngIf="menusFilter.value !== ''"
+    matSuffix
+    mat-icon-button
+    (click)="menusFilter.setValue('')"
+    matRipple
+  >
+    <mat-icon> cancel </mat-icon>
+  </button>
+  <mat-icon *ngIf="menusFilter.value === ''" matSuffix>search</mat-icon>
+</mat-form-field>
+
+<app-sidemenu-tree
+  #treeRolMenus
+  class="{{ treeRolMenus?.dataSource?.data?.length === 0 ? 'hide' : '' }}"
+>
+</app-sidemenu-tree>
+<ng-container *ngIf="matchedMenus === false">
+  <p class="empty-filter">
+    {{ "GENERAL_PAGES_FROM_LAYOUT.SIDEMENU.NO_MATCHED_MENUS" | translate }}
+  </p>
+</ng-container>
+<!-- user menus -->
+<ng-container *ngIf="treeUserMenus?.dataSource?.data?.length > 0">
+  <div class="sidemenu__menu--section">
+    <mat-icon> star </mat-icon>
+    <mat-label>
+      {{ "GENERAL_PAGES_FROM_LAYOUT.SIDEMENU.USER_MENUS" | translate }}
+    </mat-label>
+  </div>
+</ng-container>
+<app-sidemenu-tree
+  #treeUserMenus
+  class="{{ treeUserMenus?.dataSource?.data?.length === 0 ? 'hide' : '' }}"
+></app-sidemenu-tree>
+<ng-container *ngIf="matchedUserMenus === false">
+  <p class="empty-filter">
+    {{ "GENERAL_PAGES_FROM_LAYOUT.SIDEMENU.NO_MATCHED_MENUS" | translate }}
+  </p>
+</ng-container>

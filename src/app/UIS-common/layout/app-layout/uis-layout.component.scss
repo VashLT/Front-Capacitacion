@@ -1,0 +1,322 @@
+@use "../style/variables";
+@use "../style/transitions";
+@use "../style/breakpoints";
+@use "@angular/material" as mat;
+
+.uis-layout-container-wrap,
+.uis-layout-container {
+  height: 100%;
+  padding-left: 50px;
+  background-color: var(--color-background);
+}
+.uis-layout-container2 {
+  height: 100%;
+  padding-left: 28px;
+  background-color: var(--color-background);
+}
+
+@media only screen and (max-width: 600px) {
+  .uis-layout-container-wrap,
+  .uis-layout-container {
+    padding-left: 10px;
+  }
+  .uis-layout-container2 {
+    padding-left: 0px;
+  }
+}
+
+.uis-layout-content {
+  position: relative;
+  padding: 0px 32px 32px 22px;
+  /**
+   * cubre toda la pantalla
+   * su altura minita es el tamaño total - el tamaño del header
+   */
+  min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  /** Módulo renderizado dependiendo de la ruta */
+  > .ng-star-inserted {
+    display: contents;
+  }
+}
+@media only screen and (max-width: 960px) {
+  .uis-layout-content {
+    position: relative;
+    padding: 0px 32px 32px 30px;
+  }
+}
+
+.uis-layout-sidenav {
+  background-color: var(--color-background);
+  border: none !important;
+  box-shadow: none !important;
+  position: absolute;
+  overflow-x: hidden;
+  transition: transitions.swift-ease-out(width); // Only set width property
+
+  @include mat.elevation(2);
+
+  &.mat-drawer-side {
+    border-width: 0;
+  }
+}
+
+.uis-layout-side-module-bar {
+  margin-top: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+// Layout control
+.uis-layout-header-above {
+  .uis-layout-container {
+    height: calc(100% - #{variables.$toolbar-height-desktop}) !important;
+  }
+
+  .uis-layout-sidebar-main {
+    height: 100% !important;
+  }
+}
+.uis-layout-branding-logo-small-expanded {
+  display: none;
+}
+
+// Layout control
+.uis-layout-sidenav-collapsed,
+.uis-layout-sidenav-collapsed-fix {
+  .uis-layout-sidenav {
+    width: variables.$sidenav-collapsed-width;
+
+    .menu-name,
+    .menu-label,
+    .menu-badge,
+    .menu-caret,
+    .uis-layout-user-panel-name,
+    .uis-layout-user-panel-email,
+    .uis-layout-user-panel-icons {
+      opacity: 0;
+    }
+
+    .uis-layout-user-panel-avatar {
+      transform: scale(0.4);
+    }
+
+    .uis-layout-branding-logo-expanded {
+      display: none;
+    }
+
+    .uis-layout-branding-logo-small-expanded {
+      display: block;
+    }
+
+    &:hover {
+      width: variables.$sidenav-width;
+
+      .menu-name,
+      .menu-label,
+      .menu-badge,
+      .menu-caret,
+      .uis-layout-user-panel-name,
+      .uis-layout-user-panel-email,
+      .uis-layout-user-panel-icons {
+        opacity: 1;
+      }
+
+      .uis-layout-user-panel-avatar {
+        transform: scale(1);
+      }
+      .uis-layout-branding-logo-expanded {
+        display: block;
+      }
+
+      .uis-layout-branding-logo-small-expanded {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .uis-layout-sidenav {
+    width: variables.$sidenav-width-small;
+  }
+
+  .uis-layout-content {
+    padding: 0px 16px 16px 16px;
+  }
+
+  .uis-layout-container {
+    padding-left: 0px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .desktop-only {
+    display: none;
+  }
+  .uis-layout-side-module-bar {
+    display: none;
+  }
+}
+
+.no-scroll .mat-drawer-inner-container {
+  overflow-y: hidden !important;
+}
+
+// Layout control
+.uis-layout-sidenav-collapsed {
+  .uis-layout-content-wrap {
+    margin-left: variables.$sidenav-collapsed-width !important;
+
+    [dir="rtl"] & {
+      margin-left: auto !important;
+      margin-right: variables.$sidenav-collapsed-width !important;
+    }
+  }
+
+  &[dir="rtl"] .uis-layout-content-wrap {
+    margin-left: auto !important;
+    margin-right: variables.$sidenav-collapsed-width !important;
+  }
+}
+
+// Layout control
+.uis-layout-navbar-top {
+  .uis-layout-topmenu {
+    top: 0;
+  }
+
+  .uis-layout-branding {
+    margin-left: 16px;
+
+    [dir="rtl"] & {
+      margin-left: auto;
+      margin-right: 16px;
+    }
+  }
+}
+
+// Layout control
+.uis-layout-header-fixed {
+  .uis-layout-header {
+    position: sticky;
+    top: 0;
+  }
+
+  .uis-layout-topmenu {
+    top: variables.$topmenu-sticky-position-desktop;
+
+    @include breakpoints.bp-lt(small) {
+      & {
+        top: variables.$topmenu-sticky-position-mobile;
+      }
+    }
+  }
+
+  &.uis-layout-navbar-side {
+    .uis-layout-toolbar {
+      border-bottom: unset;
+
+      @include mat.elevation(2);
+    }
+  }
+}
+
+// Fix the init content width
+.uis-layout-content-width-fix {
+  .uis-layout-content-wrap {
+    margin-left: variables.$sidenav-width;
+
+    [dir="rtl"] & {
+      margin-left: auto !important;
+      margin-right: variables.$sidenav-width !important;
+    }
+  }
+}
+
+// Colorful
+.uis-layout-header-white {
+  .uis-layout-toolbar,
+  .uis-layout-topmenu {
+    background-color: var(--color-background);
+    box-shadow: none !important;
+
+    .vbutton {
+      color: var(--main-color) !important;
+      border-radius: 50%;
+    }
+  }
+}
+
+.uis-layout-side-module-bar {
+  background-color: var(--color-background);
+  box-shadow: none !important;
+  .vbutton {
+    color: var(--main-color) !important;
+    border-radius: 50%;
+  }
+}
+
+@media (hover: hover) {
+  .uis-layout-header-white {
+    .uis-layout-toolbar,
+    .uis-layout-topmenu {
+      background-color: var(--color-background);
+      box-shadow: none !important;
+      .vbutton:hover {
+        color: #fff !important;
+        background-color: rgba(36, 107, 0, 0.8) !important;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+  .uis-layout-side-module-bar {
+    .vbutton:hover {
+      color: #fff !important;
+      background-color: rgba(36, 107, 0, 0.8) !important;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
+
+@media print {
+  .uis-layout-content-wrap {
+    margin: 0px !important;
+  }
+  .uis-layout-content {
+    padding: 0px !important;
+    background: white !important;
+  }
+}
+
+.version-container {
+  height: 23px;
+  min-width: 80px;
+  padding-left: 5px;
+  padding-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: gainsboro;
+  font-weight: bold;
+  color: rgb(98, 98, 98);
+  z-index: 9999;
+  border-top-left-radius: 23px;
+}
+
+.network-status-container {
+  height: 23px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-style: 0.9rem;
+  position: fixed;
+  z-index: 9998;
+  bottom: 0px;
+}

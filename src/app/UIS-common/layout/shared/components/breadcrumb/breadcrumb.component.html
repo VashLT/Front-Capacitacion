@@ -1,0 +1,18 @@
+<nav
+  aria-label="breadcrumb"
+  class="uis-layout-breadcrumb-container"
+  *ngIf="parents && showBread"
+>
+  <ol class="uis-layout-breadcrumb">
+    <li
+      class="uis-layout-breadcrumb-item"
+      *ngFor="let navlink of nav; first as isFirst"
+    >
+      <a href="#" *ngIf="isFirst">{{ navlink.name }}</a>
+      <ng-container *ngIf="!isFirst">
+        <mat-icon class="chevron">chevron_right</mat-icon>
+        <a [routerLink]="navlink.route">{{ navlink.name }}</a>
+      </ng-container>
+    </li>
+  </ol>
+</nav>

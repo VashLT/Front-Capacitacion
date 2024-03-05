@@ -1,0 +1,23 @@
+<mat-card
+  appearance="outlined"
+  class="text-muted"
+  [ngClass]="{
+    'warning-card-cont': inconsistentData.warning,
+    'error-card-cont': inconsistentData.error,
+    'success-card-cont': inconsistentData.success,
+    'warning-card-without-background': inconsistentData.warning,
+    'error-card-without-background': inconsistentData.error
+  }"
+>
+  <div class="cont-inco">
+    <div>
+      <mat-icon>
+        {{
+          inconsistentData.icon ||
+            (inconsistentData.warning ? "error" : "cancel")
+        }}
+      </mat-icon>
+    </div>
+    <span [innerHTML]="inconsistentData.message | translate"> </span>
+  </div>
+</mat-card>

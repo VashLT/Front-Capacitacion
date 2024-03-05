@@ -1,0 +1,47 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "useDefineForClassFields": false,
+    "paths": {
+      "@UIS-common/": [
+        "src/app/UIS-common/index.ts"
+      ],
+      "@UIS-common/*": [
+        "src/app/UIS-common/*"
+      ],
+      "@angular/*": [
+        "../../node_modules/@angular/*"
+      ],
+      "@models/": [
+        "src/app/models/index.ts"
+      ],
+      "@models/*": [
+        "src/app/models/*"
+      ],
+      "@services/": [
+        "src/app/services/index.ts"
+      ],
+      "@services/*": [
+        "src/app/services/*"
+      ]
+    },
+    "allowSyntheticDefaultImports": true
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false
+  }
+}

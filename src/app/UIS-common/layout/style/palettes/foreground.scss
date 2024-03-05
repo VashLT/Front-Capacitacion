@@ -1,0 +1,21 @@
+$dark-dividers: rgba(black, 0.12);
+
+// Paleta de foregrounds, usada para los colores que directamente no son de componentes de material.
+$theme-foreground-palette: (
+  base: black,
+  divider: $dark-dividers,
+  dividers: $dark-dividers,
+  disabled: var(--color-text),
+  disabled-button: var(--color-text),
+  disabled-text: var(--color-text),
+  elevation: var(--color-disabled),
+  //sombras
+  hint-text: var(--color-text),
+  secondary-text: var(--color-text),
+  icon: var(--color-text),
+  icons: var(--color-text),
+  text: var(--color-text),
+  slider-min: var(--color-text),
+  slider-off: var(--color-text),
+  slider-off-active: var(--color-text),
+);

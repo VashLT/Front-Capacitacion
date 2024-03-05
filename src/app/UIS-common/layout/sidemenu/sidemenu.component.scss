@@ -1,0 +1,50 @@
+@import "../style/variables";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  > mat-form-field {
+    padding: 0 8px;
+  }
+  & .sidemenu__menu--section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    color: var(--color-primary);
+    & a {
+      display: flex;
+      color: var(--color-primary);
+      & mat-icon {
+        margin-right: 8px;
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+      & mat-label {
+        font-weight: bolder;
+      }
+    }
+  }
+
+  & .empty-filter {
+    margin: 12px 6px;
+    text-align: center;
+    color: var(--tonos-tenues-textos);
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.sidemenu__menu--section:hover {
+  & a {
+    color: var(--main-color);
+  }
+}
+
+app-sidemenu-tree {
+  overflow-y: auto;
+  height: 65vh;
+}

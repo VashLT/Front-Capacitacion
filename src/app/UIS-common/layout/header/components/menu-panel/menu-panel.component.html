@@ -1,0 +1,68 @@
+<!--  Menu Panel  -->
+
+<div
+  [class.mat-elevation-z2]="true"
+  class="menu-panel"
+  id="menu-panel"
+  [class.fade-in]="showMenuPanel"
+  [class.fade-out]="!showMenuPanel"
+  (click)="$event.stopPropagation()"
+>
+  <div class="panel-header">
+    <div>
+      {{ "MENU_PANEL.MANAGEMENT.MENUS_PANEL_DEFAULT" | translate }}
+    </div>
+    <a class="settings" (click)="goToSettings($event)">
+      <div>
+        {{ "BUTTONS_NAMES.EDIT_BUTTON" | translate }}
+      </div>
+    </a>
+  </div>
+
+  <div class="body">
+    <div *ngIf="menuPanel.length === 0" class="no-menus-message">
+      <mat-icon class=".material-icons color_semigrey">error_outline</mat-icon>
+      <p>{{ "MENU_PANEL.NO_MENUS_LABEL" | translate }}</p>
+    </div>
+
+    <div *ngIf="menuPanel.length >= 0">
+      <mat-accordion *ngIf="showMenuPanel">
+        <mat-expansion-panel
+          *ngFor="let module of menuPanel"
+          (opened)="module.expanded = true"
+          (closed)="module.expanded = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title
+              class="module-header"
+              [ngClass]="{ 'expanded-header': module.expanded }"
+            >
+              <mat-icon class="color_modules"> {{ module.icono }}</mat-icon>
+              {{ module.nombre }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <ng-template matExpansionPanelContent>
+            <div class="section-container">
+              <div class="menu-section">
+                <div *ngFor="let item of module.hijos">
+                  <a
+                    class="menu-button"
+                    [href]="item.ruta"
+                    [title]="item.nombre"
+                    target="_blank"
+                  >
+                    <mat-icon class=".material-icons color_grey">
+                      {{ item.icono }}</mat-icon
+                    >
+                    <div class="menu-title">{{ item.nombre }}</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>

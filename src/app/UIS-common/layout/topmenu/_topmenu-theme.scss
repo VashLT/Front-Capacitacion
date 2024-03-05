@@ -1,0 +1,22 @@
+@mixin uis-layout-topmenu-theme($theme) {
+  $is-dark-theme: map-get($theme, is-dark);
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $background: var(--main-color);
+  $foreground: mat-color($theme, foreground);
+
+  .uis-layout-topmenu {
+    background: mat-color($background, app-bar);
+    color: mat-color($foreground, text);
+
+    .mat-mdc-button {
+      &.active {
+        background-color: mat-color($background, focused-button);
+      }
+    }
+  }
+
+  .mat-mdc-menu-item.active {
+    color: mat-color($accent);
+  }
+}

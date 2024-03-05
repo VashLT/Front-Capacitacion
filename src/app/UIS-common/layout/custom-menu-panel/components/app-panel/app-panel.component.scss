@@ -1,0 +1,78 @@
+/* Styles for the panel container */
+.panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  /* Styles for the header */
+  .panel-header {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    padding: 0 16px;
+    background-color: #f1f3f4;
+    border-bottom: 1px solid #e8eaed;
+  }
+  
+  /* Styles for the logo */
+  .panel-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+    
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  
+  /* Styles for the panel grid */
+  .panel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 16px;
+    padding: 16px;
+    flex: 1;
+  }
+  
+  /* Styles for the app items */
+  .panel-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 96px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 1px 1px rgba(0,0,0,.24);
+    transition: all .3s cubic-bezier(.25,.8,.25,1);
+  }
+  
+  /* Hover styles for the app items */
+  .panel-app:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,.1), 0 4px 6px rgba(0,0,0,.08);
+  }
+  
+  /* Styles for the app icon */
+  .panel-app-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  
+  
+  /* Styles for the app label */
+  .panel-app-label {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+
+    color: #5f6368;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  

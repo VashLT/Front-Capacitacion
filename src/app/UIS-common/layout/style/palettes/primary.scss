@@ -1,0 +1,35 @@
+// Paletra primary.
+$primary-palette: (
+  50: #cdffaf,
+  100: #aaf681,
+  200: #8fd968,
+  300: #75bd50,
+  //primary
+  400: #5ca138,
+  500: #42861f,
+  //primary real
+  600: #296c00,
+  700: #235f00,
+  800: #1d5200,
+  900: #174500,
+  A100: #123800,
+  A200: #072100,
+  A400: #123800,
+  A700: #072100,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  ),
+);

@@ -1,0 +1,12 @@
+@import "../conf.scss";
+.mat-mdc-button.mat-primary,
+.mat-mdc-icon-button.mat-primary,
+.mat-mdc-outlined-button.mat-primary {
+  color: $colorTextItemMenu;
+}
+
+
+.menus{
+  display: inline-flex;
+  flex-wrap: wrap;
+}

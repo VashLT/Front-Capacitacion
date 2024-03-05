@@ -1,0 +1,203 @@
+// @import '../../styles/shared.styles.scss';
+
+$border-color: var(--border-boxes);
+$border-tab: 1px solid $border-color; //estilo del border de las tabs y el container
+$height-tab: 38px; //altura de las tabs
+$margin-left-initial-tab: 36px; //margin inicial para mover la primer tab
+$tab-margin-right: -18px; //que tan encima estan las tabs una de otra
+$skew-tab: 25deg; //inclinacion de los laterales de la tab
+$max-width-tab: 200px; //maximo ancho de las tabs
+
+* {
+  --background-tab: #efefee;
+}
+
+.add-tab-area {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+.add-tab-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.uis-tab-close-icon {
+  position: absolute;
+  right: 16px;
+  color: black;
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+}
+
+.uis-parallelogram-parent {
+  display: inline-flex;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.uis-parallelogram {
+  position: absolute;
+  width: 25px;
+  height: $height-tab;
+  background-color: var(--background-tab);
+  border-top: $border-tab;
+  z-index: 0;
+}
+.uis-parallelogram.center {
+  width: 72%;
+  --left: calc(100% - 25px);
+  width: 100%;
+  clip-path: polygon(25px 0%, var(--left) 0%, 90% 100%, 10% 100%);
+}
+
+.uis-parallelogram.start {
+  left: 10px;
+  border-left: $border-tab;
+  border-top-left-radius: 5px;
+  -webkit-transform: skew(-$skew-tab);
+  -moz-transform: skew(-$skew-tab);
+  -ms-transform: skew(-$skew-tab);
+  -o-transform: skew(-$skew-tab);
+  transform: skew(-$skew-tab);
+}
+
+.uis-parallelogram.end {
+  right: 10px;
+  border-right: $border-tab;
+  border-top-right-radius: 5px;
+  -webkit-transform: skew($skew-tab);
+  -moz-transform: skew($skew-tab);
+  -ms-transform: skew($skew-tab);
+  -o-transform: skew($skew-tab);
+  transform: skew($skew-tab);
+}
+
+:host ::ng-deep {
+  /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+  .mat-mdc-tab-header:not(.mat-tab-header-pagination-controls-enabled)
+    .mat-tab-label-container {
+    margin-left: $margin-left-initial-tab;
+  }
+  /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+  /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+  /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+  .mat-tab-labels {
+    height: $height-tab;
+    /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+    /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+    .mat-ripple.mat-tab-label {
+      width: $max-width-tab;
+      height: $height-tab;
+      padding: 0 36px 0 24px;
+      margin-right: $tab-margin-right;
+      opacity: 1 !important;
+      justify-content: flex-start;
+
+      //utilizado para asginar el z-index a las tabs y hacer que la anterior este encima de la siguiente.
+      @for $i from 1 through 100 {
+        &:nth-child(#{$i}) {
+          z-index: #{100 - $i};
+        }
+      }
+      &[aria-disabled="true"] {
+        *,
+        .label {
+          cursor: unset;
+        }
+        .uis-parallelogram {
+          background-color: var(--background-disabled-buttons);
+        }
+      }
+      /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+      .mat-tab-label-content {
+        justify-content: flex-start;
+        overflow: hidden;
+        .mat-icon.uis-tab-label-icon {
+          overflow: unset;
+          margin-right: 8px;
+        }
+        .uis-tab-label {
+          cursor: pointer;
+        }
+        :not(.uis-parallelogram) {
+          z-index: 1;
+        }
+      }
+    }
+    /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+    .mat-tab-label[aria-selected="false"] {
+      border-bottom: $border-tab;
+    }
+    /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+    .mat-ripple.mat-tab-label[aria-selected="true"] {
+      z-index: 100;
+      .uis-parallelogram {
+        background-color: #ffffff !important;
+      }
+    }
+  }
+  /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+  .mat-tab-label-content {
+    color: var(--main-color);
+  }
+
+  .mat-mdc-tab-header {
+    border: 0 !important;
+  }
+  /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+  /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+  .mat-tab-body-wrapper {
+    margin-top: -1px;
+    min-height: 450px;
+    border: $border-tab;
+    border-top: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: $margin-left-initial-tab;
+      border-top: $border-tab;
+      top: 0;
+      left: 0;
+    }
+    /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+    .mat-tab-body-content {
+      padding: 16px;
+    }
+  }
+
+  //linea que separa las tabs del contenido
+  @for $i from 1 through 12 {
+    .uis-tab-full-#{$i} {
+      /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+      .mat-tab-body-wrapper::after {
+        content: "";
+        position: absolute;
+        width: calc(
+          100% -
+            $margin-left-initial-tab -
+            (($max-width-tab + $tab-margin-right) * $i)
+        );
+        border-top: $border-tab;
+        top: 0;
+        left: calc(
+          $margin-left-initial-tab + (($max-width-tab + $tab-margin-right) * $i)
+        );
+      }
+    }
+  }
+}
+
+/* Styles for the ink bar */
+:host ::ng-deep .mat-ink-bar {
+  display: none !important;
+}

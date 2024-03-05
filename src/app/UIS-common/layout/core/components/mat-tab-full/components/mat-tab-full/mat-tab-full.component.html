@@ -1,0 +1,74 @@
+<mat-tab-group
+  #tabgroup
+  mat-align-tabs="start"
+  [preserveContent]="preserveContent"
+  [(selectedIndex)]="_selectedIndex"
+  (selectedIndexChange)="IndexChange($event)"
+  (selectedTabChange)="TabChange($event)"
+  [ngClass]="styleLineTab"
+>
+  <!--PESTAÑAS-->
+  <mat-tab
+    *ngFor="let item of content; let i = index"
+    [disabled]="item.disabled"
+  >
+    <!--LABEL-->
+    <ng-template mat-tab-label>
+      <div class="uis-parallelogram-parent">
+        <div class="uis-parallelogram start"></div>
+        <div class="uis-parallelogram end"></div>
+        <div class="uis-parallelogram center"></div>
+      </div>
+
+      <mat-icon class="uis-tab-label-icon" *ngIf="item.icon">
+        {{ item.icon }}
+      </mat-icon>
+      <label
+        class="uis-tab-label"
+        [matTooltip]="item.label"
+        matTooltipPosition="below"
+      >
+        {{ item.label }}
+      </label>
+      <!-- <button mat-icon-button class="close-icon"> -->
+      <mat-icon
+        class="uis-tab-close-icon"
+        (click)="modalCloseTab(i)"
+        *ngIf="showCloseTab"
+      >
+        close
+      </mat-icon>
+      <!-- </button> -->
+    </ng-template>
+
+    <!--CONTENT-->
+    <ng-template *ngIf="item.template" [ngTemplateOutlet]="item.template">
+    </ng-template>
+  </mat-tab>
+
+  <!--ADD TABS-->
+  <mat-tab *ngIf="showAddTab">
+    <ng-template mat-tab-label>
+      <div class="uis-parallelogram-parent">
+        <div class="uis-parallelogram start"></div>
+        <div class="uis-parallelogram end"></div>
+        <div class="uis-parallelogram center"></div>
+      </div>
+
+      <mat-icon class="label-icon">add_circle</mat-icon>
+      <label class="label">
+        {{ labelCreateTab | translate }}
+      </label>
+      <div class="add-tab-area" (click)="modalAddTab()"></div>
+    </ng-template>
+
+    <div class="add-tab-container">
+      <button mat-raised-button color="primary" (click)="modalAddTab()">
+        <mat-icon>add_circle</mat-icon>
+        {{ labelCreateTab | translate }}
+      </button>
+    </div>
+  </mat-tab>
+
+  algo mas
+</mat-tab-group>

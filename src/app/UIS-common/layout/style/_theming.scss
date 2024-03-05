@@ -1,0 +1,31 @@
+@use "@angular/material" as mat;
+@include mat.core();
+@import "./palettes/contrast.scss";
+@import "./palettes/primary.scss";
+@import "./palettes/accent.scss";
+@import "./functions/define-theme.scss";
+@import "./palettes/warn.scss";
+@import "./material/rewrited-mat.scss";
+@import "./palettes/foreground.scss";
+@import "./_typography.scss";
+
+
+$rsi-color-primary: mat.define-palette($primary-palette);
+$rsi-color-accent: mat.define-palette($accent-palette);
+$rsi-color-warn: mat.define-palette($warn-palette);
+
+
+
+//Tema claro.
+$light-theme: define-theme(
+  (
+    color: (
+      primary: $rsi-color-primary,
+      accent: $rsi-color-accent,
+      warn: $rsi-color-warn,
+    ),
+    typography: $rsi-typography-config,
+    density: 0,
+  )
+);
+@include mat.all-component-themes($light-theme);

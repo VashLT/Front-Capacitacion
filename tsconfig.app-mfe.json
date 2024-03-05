@@ -1,0 +1,19 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "./tsconfig-mfe.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": [],
+    "paths": {
+      "@angular/*": ["../../node_modules/@angular/*"],
+      "@UIS-common/": ["src/app/UIS-common/index.ts"],
+      "@UIS-common/*": ["./src/app/UIS-common/*"],
+      "@models/": ["src/app/models/index.ts"],
+      "@models/*": ["src/app/models/*"],
+      "@services/": ["src/app/services/index.ts"],
+      "@services/*": ["src/app/services/*"]
+    }
+  },
+  "files": ["src/main.ts", "src/polyfills.ts"],
+  "include": ["src/**/*.compile.ts"]
+}

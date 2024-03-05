@@ -1,0 +1,39 @@
+<div class="header">
+  <span
+    ><strong>{{ "COMMON_LABELS.USER" | translate }}: </strong
+    >{{ userName }}</span
+  >
+</div>
+<div class="info">
+  <p
+    [innerHTML]="
+      'GENERAL_PAGES_FROM_LAYOUT.SET_DEFAULT_ROL.PARAGRAPH' | translate
+    "
+  ></p>
+  <mat-icon
+    class="info__icon"
+    matTooltipClass="tooltip"
+    [matTooltip]="
+      'GENERAL_PAGES_FROM_LAYOUT.SET_DEFAULT_ROL.TOOLTIP' | translate
+    "
+    >info</mat-icon
+  >
+</div>
+<form [formGroup]="form">
+  <div class="col rolUsuario">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ "COMMON_LABELS.ROLE" | translate }}</mat-label>
+      <span matPrefix style="margin-right: 8px"
+        ><mat-icon>person_pin</mat-icon></span
+      >
+      <mat-select
+        [(value)]="this.defaultRole"
+        [formControl]="form.controls.idUserRol"
+      >
+        <mat-option *ngFor="let rol of roles" [value]="rol.id">
+          {{ rol.nombre | sentenceCase }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+</form>

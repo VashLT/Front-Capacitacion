@@ -1,0 +1,24 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div class="container">
+      <div class="img">
+        <img
+          [alt]="'GENERAL_PAGES_FROM_LAYOUT.404.ALT_IMAGE' | translate"
+          [src]="img | safeUrl"
+        />
+      </div>
+      <div class="title-desc">
+        {{ "GENERAL_PAGES_FROM_LAYOUT.404.TITLE_DESCRIPTION" | translate }}
+      </div>
+      <div
+        class="description"
+        [innerHTML]="'GENERAL_PAGES_FROM_LAYOUT.404.DESCRIPTION' | translate"
+      ></div>
+      <div class="actions">
+        <button mat-raised-button color="primary" appBackButton>
+          {{ "GENERAL_PAGES_FROM_LAYOUT.404.BUTTON_LABEL" | translate }}
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,80 @@
+{
+  "name": "DOCKER-RUNNER-UIS-FRONTEND-TEMPLATE",
+  "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:0-12",
+  "forwardPorts": [
+    3000
+  ],
+  "extensions": [
+    "dbaeumer.vscode-eslint",
+    "mikael.angular-beastcode",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "aaron-bond.better-comments",
+    "abusaidm.html-snippets",
+    "xabikos.javascriptsnippets",
+    "angular.ng-template",
+    "cyrilletuzi.angular-schematics",
+    "streetsidesoftware.code-spell-checker",
+    "eamodio.gitlens",
+    "ecmel.vscode-html-css",
+    "zignd.html-css-class-completion",
+    "ritwickdey.liveserver",
+    "piyush-bhatt.vscode-mat-palette",
+    "esbenp.prettier-vscode",
+    "rvest.vs-code-prettier-eslint",
+    "mrmlnc.vscode-scss",
+    "streetsidesoftware.code-spell-checker-spanish",
+    "visualstudioexptteam.vscodeintellicode"
+  ],
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "settings": {
+    "liveServer.settings.donotVerifyTags": true,
+    "workbench.startupEditor": "newUntitledFile",
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "[css]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "cSpell.language": "es",
+    "launch": {
+      "configurations": [],
+      "compounds": []
+    },
+    "cSpell.diagnosticLevel": "Hint",
+    "[scss]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+      "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "files.exclude": {
+      "**/.classpath": true,
+      "**/.project": true,
+      "**/.settings": true,
+      "**/.factorypath": true
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "[jsonc]": {
+      "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "editor.quickSuggestionsDelay": 2,
+    "typescript.inlayHints.parameterNames.enabled": "all",
+    "javascript.inlayHints.parameterNames.enabled": "all",
+    "editor.inlineSuggest.enabled": true,
+  }
+}

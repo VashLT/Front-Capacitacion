@@ -1,0 +1,91 @@
+// Layout
+$gutter: 16px !default;
+
+// Sidenav
+$sidenav-width: 300px !default;
+$sidenav-width-small: 240px !default;
+$sidenav-collapsed-width: 76px !default;
+$sidenav-width-mobile: 280px !default;
+
+// Toolbar
+$toolbar-height-desktop: 90px !default;
+$toolbar-height-mobile: 56px !default;
+
+// Topmenu
+$topmenu-sticky-position-desktop: $toolbar-height-desktop !default;
+$topmenu-sticky-position-mobile: $toolbar-height-mobile !default;
+
+// Typography
+$font-family-sans-serif: "Open Sans", sans-serif !default;
+$font-family-monospace: "Open Sans", monospace !default;
+$font-family-base: $font-family-sans-serif !default;
+
+// Breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+$breakpoints: (
+  xsmall: 0,
+  small: 600px,
+  medium: 960px,
+  large: 1280px,
+  xlarge: 1920px,
+) !default;
+
+:root {
+  --color-primary: #42861f;
+  --color-primary-rgb: 51, 153, 0;
+  --color-secondary: #99cc33;
+  --color-title-side-menu: #67b93e;
+  --color-toggle: #98cb7e;
+  --color-chip: #bad9ab;
+  --color-autocomplete: #edf6e9;
+  --color-chip-suggestion-multiple: #bad9ab;
+  --color-text: #666666;
+  --color-text-on-primary: #ffffff;
+  --color-border: #707070;
+  --color-disabled: #b7b7b7;
+  --color-divider: #e0e0e0;
+  --color-text-field: #f5f5f5;
+  --color-on-text-field: #707070;
+  --color-background: #fafafa;
+  --color-surface: #ffffff;
+  --color-error: #cc0000;
+  --color-warning: #ffcc00;
+
+  --main-color: var(--color-primary);
+  --main-color-titles: var(--color-secondary);
+  --main-color__hover: hsl(100, 100%, 26%);
+  --main-color-9: rgba(var(--color-primary-rgb), 0.788);
+  --text-color-main: var(--color-text-on-primary);
+
+  --tonos-tenues-textos: var(--color-text);
+  --border-boxes: var(--color-border);
+  --borde-botones-blancos: var(--color-border);
+  --background-disabled-buttons: var(--color-disabled);
+  --icon-size: 24px;
+  --btn-size: 32px;
+  --error-color-op: var(--color-error);
+  --warning-color-op: var(--color-warning);
+
+  //ESTILOS DE ALERTAS PERMANENTES
+  --on-warning-container: #655000;
+  --warning-container: #fffae6;
+  --tonal-warning-button: #ffefcc;
+  --hover-tonal-warning-button: #ffe88b;
+
+  --on-info-container: #1e4e4e;
+  --info-container: #f1fffe;
+  --tonal-info-button: #c9fafa;
+  --hover-tonal-info-button: #a0cfcf;
+
+  --on-error-container: #93000f;
+  --error-container: #ffedeb;
+  --tonal-error-button: #ffdad6;
+  --hover-tonal-error-button: #ffb3ac;
+
+  --on-success-container: #215100;
+  --success-container: #eeffdd;
+  --tonal-success-button: #ceffac;
+  --hover-tonal-success-button: #8adb58;
+}

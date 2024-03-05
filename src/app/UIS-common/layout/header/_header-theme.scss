@@ -1,0 +1,17 @@
+@use "sass:map";
+@mixin uis-layout-header-theme($theme) {
+  $background: map.get($theme, background);
+  $foreground: map.get($theme, foreground);
+
+  .uis-layout-toolbar-button {
+    &.mat-mdc-icon-button {
+      &:hover {
+        background-color: mat-color($background, hover);
+      }
+    }
+  }
+
+  .uis-layout-branding-name {
+    color: mat-color($foreground, text);
+  }
+}

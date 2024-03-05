@@ -1,0 +1,43 @@
+$font-size: 1rem;
+$font-size-title: 1.5rem;
+$altura-portada: calc(100vh - 125px - 32px);
+$espacio-contenedor: 30px;
+.container {
+  width: 100%;
+  height: $altura-portada;
+  padding: $espacio-contenedor;
+  padding-top: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  gap: 3%;
+  .description,
+  .title-desc {
+    font-size: $font-size;
+    color: var(--tonos-tenues-textos);
+  }
+  .title-desc {
+    font-weight: bold;
+  }
+  .actions {
+    button {
+      font-weight: bold;
+    }
+  }
+  .img {
+    width: 100%;
+    max-width: 80vh;
+    img {
+      margin-top: calc(-16px * 3);
+      width: 100%;
+      max-height: 65vh;
+    }
+  }
+}
+@media screen and (max-width: 700px) {
+  .container {
+    gap: 7%;
+  }
+}

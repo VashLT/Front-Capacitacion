@@ -1,0 +1,24 @@
+<div class="foto">
+  <img [src]="showingImage" alt="El funcionario no tiene foto" srcset="" />
+
+  <div
+    *ngIf="edit"
+    class="hover colu"
+    [title]="'Seleccionar una foto'"
+    (click)="ref.click()"
+  >
+    <mat-icon>edit</mat-icon>
+    <span class="tes"> Sólo GIF, JPEG, JPG, PNG </span>
+    <span class="tes1"> máx. 10MB </span>
+  </div>
+  <input
+    style="display: none"
+    #ref
+    type="file"
+    (change)="getImage($event)"
+    name=""
+    id=""
+    onclick="this.value=null;"
+    [accept]="accept"
+  />
+</div>

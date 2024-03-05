@@ -1,0 +1,217 @@
+@import "../style/variables";
+@import "../style/transitions";
+
+.uis-layout-user-panel {
+  display: flex;
+  flex-direction: row;
+  padding: 25px 0px 6px 0px;
+  color: var(--color-text) !important;
+}
+
+.datos-user {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  transform: translate(0, -4px);
+}
+
+h4 {
+  margin-bottom: 0px !important;
+}
+
+h5 {
+  margin-bottom: 0px !important;
+}
+
+.divisor {
+  position: relative;
+  width: $sidenav-width;
+}
+
+.btn {
+  background: none;
+  display: block;
+  overflow: hidden;
+  border: none;
+  color: var(--tonos-tenues-textos);
+  border-radius: 5px;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
+
+.select {
+  font-weight: bold;
+  display: flex;
+  margin: 5px -5px;
+  align-items: center;
+  padding: 0px 5px !important;
+  color: var(--color-text);
+  max-width: 220px;
+  .text {
+    max-width: 200px; /* Adjust based on your needs */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Number of lines to display before ellipsis */
+    -webkit-box-orient: vertical;
+  }
+
+  mat-icon {
+    overflow: visible;
+  }
+}
+
+.selected {
+  color: var(--main-color);
+}
+
+.menu-title {
+  color: var(--tonos-tenues-textos);
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.menu-option {
+  width: 100%;
+  font-size: 14px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  display: block;
+  text-align: left;
+  max-width: 320px;
+}
+
+.common-popup {
+  padding: 20px;
+}
+
+::ng-deep {
+  .mat-mdc-menu-panel {
+    min-width: 170px !important;
+    padding: 0px 16px;
+    padding-top: 10px;
+    transform-origin: left top;
+    margin-top: 10px;
+    border-radius: 16px !important;
+    margin-right: 70px !important;
+  }
+
+  .menu-panel {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: inherit;
+    width: 300px;
+
+    a {
+      text-decoration: none;
+    }
+    .mat-mdc-menu-content {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 320px !important;
+  }
+}
+
+// Set default width and height can avoid flashing before avatar image loaded.
+.uis-layout-user-panel-avatar {
+  width: 65px;
+  height: 65px;
+  margin-bottom: 8px;
+  border-radius: 50rem;
+  transition: swift-ease-out(transform);
+}
+
+@media screen and (max-width: 650px) {
+  .uis-layout-user-panel-name {
+    max-width: 140px; /* Adjust based on your needs */
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .uis-layout-user-panel-email {
+    max-width: 140px; /* Adjust based on your needs */
+    font-size: 12px;
+    line-height: 1.2;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .select {
+    .text {
+      max-width: 130px; /* Adjust based on your needs */
+      font-size: 14px;
+      line-height: 1.2;
+      text-align: left;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .uis-layout-user-panel-avatar {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.uis-layout-user-panel-name {
+  font-size: 16px;
+  font-weight: bold !important;
+}
+
+.uis-layout-user-panel-name,
+.uis-layout-user-panel-email {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-weight: normal;
+}
+
+.uis-layout-user-panel-name,
+.uis-layout-user-panel-email,
+.uis-layout-user-panel-icons {
+  opacity: 1;
+  transition: swift-ease-out(opacity);
+}
+
+button {
+  text-align: center;
+  color: var(--color-text);
+}
+
+@media screen and (max-width: 500px) {
+  button {
+    width: fit-content;
+  }
+}
+
+button:hover {
+  color: green;
+}
+
+.uis-layout-user-panel-icons {
+  white-space: nowrap;
+  padding: 0 16px;
+  width: $sidenav-width;
+  //border-top: 1px solid rgba(0, 0, 0, 0.12);;
+  // .mat-icon-button {
+  //   width: 24px;
+  //   padding-right: 15rem;
+  // }
+}
+@media screen and (max-width: 500px) {
+  .uis-layout-user-panel-icons {
+    justify-content: center;
+  }
+}

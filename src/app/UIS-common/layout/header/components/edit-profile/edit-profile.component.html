@@ -1,0 +1,271 @@
+<div
+  class="uis-layout-user-panel default-column justify-center align-center"
+  *ngIf="form"
+>
+  <app-edit-image
+    [edit]="edit"
+    [idUser]="idUser"
+    [idPerson]="idPerson"
+    (updateImage)="updateImage($event)"
+  ></app-edit-image>
+
+  <h4 class="uis-layout-user-panel-name">
+    <strong>{{ "COMMON_LABELS.USER" | translate }}: </strong>{{ userName }}
+  </h4>
+  <form [formGroup]="form" class="form-auth-rsi form-signup">
+    <ng-container>
+      <div class="wrapper-fields">
+        <div class="field-group">
+          <mat-form-field class="field">
+            <mat-icon matPrefix>account_circle</mat-icon>
+            <mat-label>{{ "COMMON_LABELS.FIRST_NAME" | translate }}</mat-label>
+            <input
+              matInput
+              [placeholder]="'FIELDS_PLACEHOLDERS.FIRST_NAME' | translate"
+              formControlName="firstName"
+              type="text"
+              [maxlength]="maxCharTextField"
+              required
+            />
+            <mat-error *ngIf="form.controls.firstName.hasError('required')">
+              {{ "FORMS_ERROR_MESSAGES.DEFAULT" | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls.firstName.hasError('pattern')">
+              {{ "FORMS_ERROR_MESSAGES.NAME" | translate }}
+            </mat-error>
+            <!-- <mat-error *ngIf="form.controls.firstName.hasError('maxLength')">
+              {{
+                "FORMS_ERROR_MESSAGES.MAX_CHAR_LENGTH"
+                  | translate
+                    : {
+                        max: maxCharTextField
+                      }
+              }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                form.controls.firstName.hasError('spaces') &&
+                !(form.controls.firstName.value === '')
+              "
+            >
+              {{ "FORMS_ERROR_MESSAGES.NOT_SPECIAL_CHARS" | translate }}
+            </mat-error> -->
+          </mat-form-field>
+          <mat-form-field class="field">
+            <mat-icon matPrefix>account_circle</mat-icon>
+            <mat-label>{{ "COMMON_LABELS.NOM_ADC" | translate }}</mat-label>
+            <input
+              matInput
+              [placeholder]="'FIELDS_PLACEHOLDERS.NOM_ADC' | translate"
+              formControlName="secondName"
+              type="text"
+              [maxlength]="maxCharTextField"
+            />
+            <mat-error *ngIf="form.controls.firstName.hasError('pattern')">
+              {{ "FORMS_ERROR_MESSAGES.NAME" | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls.secondName.hasError('maxLength')">
+              {{
+                "FORMS_ERROR_MESSAGES.MAX_CHAR_LENGTH"
+                  | translate
+                    : {
+                        max: maxCharTextField
+                      }
+              }}
+            </mat-error>
+            <!-- <mat-error *ngIf="form.controls.secondName.hasError('spaces')">
+              {{ "FORMS_ERROR_MESSAGES.NOT_SPECIAL_CHARS" | translate }}
+            </mat-error> -->
+          </mat-form-field>
+        </div>
+        <div class="field-group">
+          <mat-form-field class="field">
+            <mat-icon matPrefix>account_circle</mat-icon>
+            <mat-label>
+              {{ "COMMON_LABELS.FIRST_SURNAME" | translate }}
+            </mat-label>
+            <input
+              matInput
+              [placeholder]="'FIELDS_PLACEHOLDERS.FIRST_SURNAME' | translate"
+              formControlName="firstSurname"
+              type="text"
+              [maxlength]="maxCharTextField"
+              required
+            />
+            <mat-error *ngIf="form.controls.firstSurname.hasError('required')">
+              {{ "FORMS_ERROR_MESSAGES.DEFAULT" | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls.firstName.hasError('pattern')">
+              {{ "FORMS_ERROR_MESSAGES.NAME" | translate }}
+            </mat-error>
+            <!-- <mat-error *ngIf="form.controls.firstSurname.hasError('maxLength')">
+              {{
+                "FORMS_ERROR_MESSAGES.MAX_CHAR_LENGTH"
+                  | translate
+                    : {
+                        max: maxCharTextField
+                      }
+              }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                form.controls.firstSurname.hasError('spaces') &&
+                !(form.controls.firstSurname.value === '')
+              "
+            >
+              {{ "FORMS_ERROR_MESSAGES.NOT_SPECIAL_CHARS" | translate }}
+            </mat-error> -->
+          </mat-form-field>
+          <mat-form-field class="field">
+            <mat-icon matPrefix>account_circle</mat-icon>
+            <mat-label>
+              {{ "COMMON_LABELS.SECOND_SURNAME" | translate }}
+            </mat-label>
+            <input
+              matInput
+              [placeholder]="'FIELDS_PLACEHOLDERS.SECOND_SURNAME' | translate"
+              formControlName="secondSurname"
+              type="text"
+              [maxlength]="maxCharTextField"
+            />
+            <mat-error *ngIf="form.controls.firstName.hasError('pattern')">
+              {{ "FORMS_ERROR_MESSAGES.NAME" | translate }}
+            </mat-error>
+            <!-- <mat-error
+              *ngIf="form.controls.secondSurname.hasError('maxLength')"
+            >
+              {{
+                "FORMS_ERROR_MESSAGES.MAX_CHAR_LENGTH"
+                  | translate
+                    : {
+                        max: maxCharTextField
+                      }
+              }}
+            </mat-error> -->
+            <!-- <mat-error *ngIf="form.controls.secondSurname.hasError('spaces')">
+              {{ "FORMS_ERROR_MESSAGES.NOT_SPECIAL_CHARS" | translate }}
+            </mat-error> -->
+          </mat-form-field>
+        </div>
+
+        <mat-form-field class="field" *ngIf="!isNotAspirante">
+          <mat-icon matPrefix>email</mat-icon>
+          <mat-label>
+            {{ "COMMON_LABELS.EMAIL_PER" | translate }}
+          </mat-label>
+          <input
+            matInput
+            [placeholder]="'FIELDS_PLACEHOLDERS.EMAIL_PER' | translate"
+            (input)="checkEmailField()"
+            formControlName="email"
+            type="text"
+            [maxlength]="maxCharEmailField"
+            required
+          />
+          <mat-error
+            *ngIf="
+              form.controls.email.invalid && form.controls.email.value !== ''
+            "
+          >
+            {{ "FORMS_ERROR_MESSAGES.DEFAULT" | translate }}
+          </mat-error>
+          <mat-error
+            *ngIf="
+              form.controls.email.hasError('pattern') &&
+              form.controls.email.value !== ''
+            "
+          >
+            {{ "FORMS_ERROR_MESSAGES.ON_INVALID_EMAIL" | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field
+          class="correoInstitucional field"
+          *ngIf="isNotAspirante"
+        >
+          <mat-label>{{ "COMMON_LABELS.EMAIL_INST" | translate }}</mat-label>
+          <input
+            [placeholder]="'FIELDS_PLACEHOLDERS.EMAIL_INST' | translate"
+            formControlName="loginEmailInstitucional"
+            matInput
+            oninput="this.value = this.value?.toLowerCase();"
+            type="text"
+            class="loginCorreoInstitucional"
+            required
+          /><span class="at">&#64;</span>
+          <mat-select
+            formControlName="dominioCorreoInstitucional"
+            class="dominioCorreoInstitucional"
+          >
+            <mat-option [value]=""
+              >{{ "COMMON_LABELS.SELECT_DOMAIN_CORREO_INST" | translate }}
+            </mat-option>
+            <mat-option
+              *ngFor="
+                let dominioCorreoInstitucionalItem of dominiosCorreoInstitucional
+                  | async
+              "
+              [value]="dominioCorreoInstitucionalItem.nombre"
+            >
+              {{ dominioCorreoInstitucionalItem.nombre }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matPrefix> email </mat-icon>
+
+          <mat-error *ngIf="form.controls.loginEmailInstitucional.invalid">
+            {{ "FORMS_ERROR_MESSAGES.ON_INVALID_EMAIL" | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <div class="field-sign" *ngIf="(canUploadSignature | async) === true">
+          <mat-label
+            [ngClass]="{
+              'mat-error':
+                form.controls.firmaB64.invalid && form.controls.firmaB64.touched
+            }"
+          >
+            {{
+              "GENERAL_PAGES_FROM_LAYOUT.TOP_NAV_BAR_MESSAGES.EDIT_PROFILE.SIGNATURE"
+                | translate
+            }}
+          </mat-label>
+          <app-file-chooser
+            appModifyFileChooserSign
+            #fileInput
+            (files)="setValueSign($event)"
+            [idAdjunto]="form.controls.firmaB64.value"
+            [editMode]="true"
+            [accept]="acceptInSignature"
+          >
+          </app-file-chooser>
+          <mat-hint
+            *ngIf="
+              form.controls.firmaB64.invalid && form.controls.firmaB64.touched
+            "
+          >
+            <span class="mat-mdc-error tamano-error">
+              {{
+                (form.controls.firmaB64.hasError("maxSize")
+                  ? "FORMS_ERROR_MESSAGES.ON_ERROR_MAX_SIZE_FILE"
+                  : form.controls.firmaB64.hasError("fileType")
+                  ? "CRUD_MESSAGES.ON_ERROR_EXT_FILE_CHOOSER"
+                  : form.controls.firmaB64.hasError("aspectRadio")
+                  ? "GENERAL_PAGES_FROM_LAYOUT.TOP_NAV_BAR_MESSAGES.EDIT_PROFILE.ON_ERROR_ASPECT_RADIO"
+                  : "FORMS_ERROR_MESSAGES.DEFAULT"
+                )
+                  | translate
+                    : {
+                        extensions: ".jpg, .jpeg, .png, etc.",
+                        aspectRadio: aspectRadioAllowed,
+                        maxSize:
+                          form.controls.firmaB64.getError("maxSize")
+                            ?.maxSizeRequired
+                      }
+              }}
+            </span>
+          </mat-hint>
+        </div>
+      </div>
+    </ng-container>
+  </form>
+</div>

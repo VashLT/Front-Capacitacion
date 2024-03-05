@@ -1,0 +1,36 @@
+<div class="content">
+  <uis-loader-uis *ngIf="!file"></uis-loader-uis>
+  <img
+    src="assets/images/uis-complete.svg"
+    alt=""
+    srcset=""
+    width="130"
+    *ngIf="file"
+  />
+  <div class="info-loading" *ngIf="!file">
+    {{ configComponent.onLoading | translate }}
+  </div>
+  <div class="info-success" *ngIf="file">
+    {{ configComponent.onSuccess | translate }}
+  </div>
+  <div class="buttons">
+    <button
+      class="cancel-button"
+      mat-stroked-button
+      (click)="cancelar()"
+      [title]="configComponent.cancelTextButton | translate"
+    >
+      {{ configComponent.cancelTextButton | translate }}
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="downloadFile()"
+      *ngIf="file"
+      [title]="configComponent.downloadTextButton | translate"
+    >
+      <mat-icon>save_alt</mat-icon>
+      {{ configComponent.downloadTextButton | translate }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+// Variables para cuando el foreground no aplica.
+// Nota: Aquí se deben agregar las variables que se inspeccionan.
+:root {
+  --mat-select-enabled-trigger-text-color: var(--color-text);
+  --mat-paginator-container-text-color: var(--color-text);
+  --mdc-text-button-label-text-color: var(--color-text);
+  --mat-datepicker-calendar-period-button-text-color: var(--color-text);
+  --mat-sidenav-container-background-color: var(--color-background);
+  --mdc-filled-text-field-input-text-color: var(--color-text);
+}
+
+mat-chip-row {
+  --mdc-chip-label-text-color: var(--main-color) !important;
+  --mdc-chip-elevated-container-color: var(
+    --color-chip-suggestion-multiple
+  ) !important;
+  mat-icon {
+    color: var(--main-color) !important;
+  }
+}
+
+.mat-mdc-error {
+  color: var(--mat-form-field-error-text-color) !important;
+}

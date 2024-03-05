@@ -1,0 +1,55 @@
+@import '../style/variables';
+
+@mixin uis-layout-sidemenu-theme($theme) {
+  $is-dark-theme: map-get($theme, is-dark);
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .uis-layout-sidemenu {
+    > .uis-layout-sidemenu-item {
+      > a {
+        color: mat-color($foreground, text);
+
+        &:hover {
+          background: mat-color($background, hover);
+        }
+      }
+
+      &.active-route {
+        > a {
+          background-color: if($is-dark-theme, rgba(mat-color($primary), .15), transparent);
+          color: if($is-dark-theme, lighten(mat-color($primary), 25%), mat-color($accent));
+
+          &:hover {
+            background: mat-color($background, hover);
+          }
+        }
+      }
+
+      &.open {
+        background: mat-color($background, hover);
+      }
+    }
+
+    &.uis-layout-sidemenu-sub {
+      > .uis-layout-sidemenu-item {
+        &.active-route {
+          > a {
+            background-color: transparent;
+
+            &:hover {
+              background: mat-color($background, hover);
+            }
+          }
+        }
+
+        &.open {
+          background: transparent;
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,397 @@
+{
+  "name": "hojadevida",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
+  "sourceRoot": "apps/hv-frontend/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "options": {
+        "outputPath": "dist-mf/apps/hojadevida",
+        "index": "apps/hv-frontend/src/index.html",
+        "main": "apps/hv-frontend/src/main.ts",
+        "polyfills": ["zone.js", "apps/hv-frontend/src/polyfills.ts"],
+        "tsConfig": "apps/hv-frontend/tsconfig.app-mfe.json",
+        "allowedCommonJsDependencies": [],
+        "assets": [
+          "apps/hv-frontend/src/favicon.ico",
+          "apps/hv-frontend/src/assets",
+          "apps/hv-frontend/src/manifest.webmanifest",
+          {
+            "glob": "**/*",
+            "input": "./node_modules/@uis/uis-lib/assets",
+            "output": "assets"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/hv-frontend/src/assets",
+            "output": "assets"
+          }
+        ],
+        "styles": [
+          "./node_modules/flexboxgrid/dist/flexboxgrid.min.css",
+          "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+          "./node_modules/swiper/swiper-bundle.min.css",
+          "apps/hv-frontend/node_modules/@uis/uis-lib/styles.scss",
+          "apps/hv-frontend/src/styles.scss",
+          "apps/hv-frontend/src/app/UIS-common/layout/style.scss"
+        ],
+        "preserveSymlinks": true,
+        "scripts": [],
+        "serviceWorker": true,
+        "ngswConfigPath": "apps/hv-frontend/ngsw-config.json",
+        "customWebpackConfig": {
+          "path": "apps/hv-frontend/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "predev": {
+          "aot": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/hv-frontend/src/environments/environment.ts",
+              "with": "apps/hv-frontend/src/environments/environment.predev.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/environments/global-envs/global-envs-not-mf.ts",
+              "with": "apps/hv-frontend/src/environments/global-envs/global-envs-mf.predev.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/environments/project-home/project-home-not-mf.ts",
+              "with": "apps/hv-frontend/src/environments/project-home/project-home-mf.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/environments/utils/utils-not-mf.ts",
+              "with": "apps/hv-frontend/src/environments/utils/utils-mf.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/app/UIS-common/layout/sidemenu/components/sidemenu-tree/utils/load-route-not-mfe.ts",
+              "with": "apps/hv-frontend/src/app/UIS-common/layout/sidemenu/components/sidemenu-tree/utils/load-route-mfe.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": true,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "20kb",
+              "maximumError": "500kb"
+            }
+          ]
+        },
+        "local": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/hv-frontend/src/environments/environment.ts",
+              "with": "apps/hv-frontend/src/environments/environment.develop.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/environments/global-envs/global-envs-not-mf.ts",
+              "with": "apps/hv-frontend/src/environments/global-envs/global-envs-mf.develop.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/environments/project-home/project-home-not-mf.ts",
+              "with": "apps/hv-frontend/src/environments/project-home/project-home-mf.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/environments/utils/utils-not-mf.ts",
+              "with": "apps/hv-frontend/src/environments/utils/utils-mf.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/app/UIS-common/layout/sidemenu/components/sidemenu-tree/utils/load-route-not-mfe.ts",
+              "with": "apps/hv-frontend/src/app/UIS-common/layout/sidemenu/components/sidemenu-tree/utils/load-route-mfe.ts"
+            }
+          ],
+          "customWebpackConfig": {
+            "path": "apps/hv-frontend/webpack.config.js"
+          }
+        },
+        "develop": {
+          "aot": true,
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": true,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "20kb",
+              "maximumError": "500kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/hv-frontend/src/environments/environment.ts",
+              "with": "apps/hv-frontend/src/environments/environment.develop.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/environments/global-envs/global-envs-not-mf.ts",
+              "with": "apps/hv-frontend/src/environments/global-envs/global-envs-mf.develop.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/environments/project-home/project-home-not-mf.ts",
+              "with": "apps/hv-frontend/src/environments/project-home/project-home-mf.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/environments/utils/utils-not-mf.ts",
+              "with": "apps/hv-frontend/src/environments/utils/utils-mf.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/app/UIS-common/layout/sidemenu/components/sidemenu-tree/utils/load-route-not-mfe.ts",
+              "with": "apps/hv-frontend/src/app/UIS-common/layout/sidemenu/components/sidemenu-tree/utils/load-route-mfe.ts"
+            }
+          ]
+        },
+        "preprod": {
+          "aot": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/hv-frontend/src/environments/environment.ts",
+              "with": "apps/hv-frontend/src/environments/environment.preprod.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/environments/global-envs/global-envs-not-mf.ts",
+              "with": "apps/hv-frontend/src/environments/global-envs/global-envs-mf.preprod.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/environments/project-home/project-home-not-mf.ts",
+              "with": "apps/hv-frontend/src/environments/project-home/project-home-mf.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/environments/utils/utils-not-mf.ts",
+              "with": "apps/hv-frontend/src/environments/utils/utils-mf.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/app/UIS-common/layout/sidemenu/components/sidemenu-tree/utils/load-route-not-mfe.ts",
+              "with": "apps/hv-frontend/src/app/UIS-common/layout/sidemenu/components/sidemenu-tree/utils/load-route-mfe.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": true,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "20kb",
+              "maximumError": "500kb"
+            }
+          ]
+        },
+        "production": {
+          "aot": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/hv-frontend/src/environments/environment.ts",
+              "with": "apps/hv-frontend/src/environments/environment.production.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/app/store/config/devtool.ts",
+              "with": "apps/hv-frontend/src/app/store/config/devtool.prod.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/environments/global-envs/global-envs-not-mf.ts",
+              "with": "apps/hv-frontend/src/environments/global-envs/global-envs-mf.production.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/environments/project-home/project-home-not-mf.ts",
+              "with": "apps/hv-frontend/src/environments/project-home/project-home-mf.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/environments/utils/utils-not-mf.ts",
+              "with": "apps/hv-frontend/src/environments/utils/utils-mf.ts"
+            },
+            {
+              "replace": "apps/hv-frontend/src/app/UIS-common/layout/sidemenu/components/sidemenu-tree/utils/load-route-not-mfe.ts",
+              "with": "apps/hv-frontend/src/app/UIS-common/layout/sidemenu/components/sidemenu-tree/utils/load-route-mfe.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": true,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "20kb",
+              "maximumError": "500kb"
+            }
+          ],
+          "customWebpackConfig": {
+            "path": "apps/hv-frontend/webpack.prod.config.js"
+          }
+        }
+      },
+      "defaultConfiguration": "local"
+    },
+    "serve": {
+      "executor": "@nx/angular:module-federation-dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "hojadevida:build:production"
+        },
+        "preprod": {
+          "browserTarget": "hojadevida:build:preprod"
+        },
+        "develop": {
+          "browserTarget": "hojadevida:build:develop"
+        },
+        "predev": {
+          "browserTarget": "hojadevida:build:predev"
+        },
+        "local": {
+          "browserTarget": "hojadevida:build:local"
+        }
+      },
+      "defaultConfiguration": "local",
+      "options": {
+        "port": 4202,
+        "publicHost": "http://localhost:4202"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "hojadevida:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "apps/hv-frontend/src/test.ts",
+        "tsConfig": "apps/hv-frontend/tsconfig.spec.json",
+        "karmaConfig": "apps/hv-frontend/src/karma-confs-tests/karma.conf-local.js",
+        "assets": [
+          "apps/hv-frontend/src/favicon.ico",
+          "apps/hv-frontend/src/assets",
+          "apps/hv-frontend/src/manifest.webmanifest"
+        ],
+        "styles": [
+          "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+          "apps/hv-frontend/src/styles.scss"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "local": {
+          "karmaConfig": "apps/hv-frontend/src/karma-confs-tests/karma.conf-local.js"
+        },
+        "predev": {
+          "karmaConfig": "apps/hv-frontend/src/karma-confs-tests/karma.conf-predev.js"
+        },
+        "develop": {
+          "karmaConfig": "apps/hv-frontend/src/karma-confs-tests/karma.conf-develop.js"
+        },
+        "preprod": {
+          "karmaConfig": "apps/hv-frontend/src/karma-confs-tests/karma.conf-preprod.js"
+        },
+        "production": {
+          "karmaConfig": "apps/hv-frontend/src/karma-confs-tests/karma.conf-production.js"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@angular-eslint/builder:lint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/hv-frontend/src/**/*.ts",
+          "apps/hv-frontend/src/**/*.html"
+        ]
+      }
+    },
+    "e2e": {
+      "executor": "@cypress/schematic:cypress",
+      "options": {
+        "devServerTarget": "hojadevida:serve",
+        "watch": true,
+        "headless": false
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "hojadevida:serve:production"
+        }
+      }
+    },
+    "cypress-run": {
+      "executor": "@cypress/schematic:cypress",
+      "options": {
+        "devServerTarget": "hojadevida:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "hojadevida:serve:production"
+        }
+      }
+    },
+    "cypress-open": {
+      "executor": "@cypress/schematic:cypress",
+      "options": {
+        "watch": true,
+        "headless": false
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/web:file-server",
+      "defaultConfiguration": "local",
+      "options": {
+        "port": 4202,
+        "buildTarget": "hojadevida:build"
+      },
+      "configurations": {
+        "local": {
+          "buildTarget": "hojadevida:build:local"
+        },
+        "production": {
+          "buildTarget": "hojadevida:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

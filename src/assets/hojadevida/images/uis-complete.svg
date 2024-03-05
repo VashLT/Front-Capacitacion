@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="230.894" height="232.451" viewBox="0 0 230.894 232.451">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #390;
+        stroke: #707070;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3, .cls-5 {
+        fill: none;
+      }
+
+      .cls-3 {
+        stroke: #390;
+        stroke-linecap: round;
+        stroke-width: 2px;
+        stroke-dasharray: 1000 1000;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Grupo_1441" data-name="Grupo 1441" transform="translate(-845 -424)">
+    <g id="Grupo_1440" data-name="Grupo 1440">
+      <g id="Rectángulo_520" data-name="Rectángulo 520" class="cls-1" transform="translate(857 440)">
+        <rect class="cls-4" width="206" height="200"/>
+        <rect class="cls-5" x="0.5" y="0.5" width="205" height="199"/>
+      </g>
+      <path id="Exclusión_19" data-name="Exclusión 19" class="cls-2" d="M233.417,238.031H10.523a4,4,0,0,1-4-4V9.58a4,4,0,0,1,4-4H233.417a4,4,0,0,1,4,4V234.031A4,4,0,0,1,233.417,238.031ZM122.613,35.586c-3.529,0-7.177.155-10.844.46V207.591c.064,0,7.878.459,13.905.459,3.528,0,5.75-.154,6.6-.459V36.046A84.459,84.459,0,0,0,122.613,35.586Zm-42.1,12.479h0a29.594,29.594,0,0,0-5.943,3.472,77.8,77.8,0,0,0-14.8,14.348V177.55a79.241,79.241,0,0,0,12.153,12.17c7.21,5.906,18.973,13.62,34.063,16.83V37.707c-.16.041-16.424,4.192-20.083,7.041v127.8l-5.386-.208V48.065Zm57.565,89.083v69.378a116.705,116.705,0,0,0,17.9-6.991c8.956-4.347,21.136-11.731,28.307-22.222v-66.06H158.388V71.088h5.178v34.39h20.691V65.92a92.757,92.757,0,0,0-13.143-12.865C163.605,47,151.779,39.417,138.079,37.707v94.47h25.9v40.61h-5.593V137.148Z" transform="translate(838.477 418.42)"/>
+    </g>
+    <g id="Rectángulo_519" data-name="Rectángulo 519" class="cls-3" transform="translate(1067 431) rotate(90)">
+      <rect class="cls-4" width="218" height="214" rx="15"/>
+      <rect class="cls-5" x="1" y="1" width="216" height="212" rx="14"/>
+    </g>
+  </g>
+</svg>

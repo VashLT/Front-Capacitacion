@@ -1,0 +1,42 @@
+.uis-layout-user-panel {
+  padding: 16px 0;
+  color: var(--tonos-tenues-textos) !important;
+}
+// Set default width and height can avoid flashing before avatar image loaded.
+.uis-layout-user-panel-avatar {
+  width: 139px;
+  height: 139px;
+  margin-bottom: 8px;
+  border-radius: 50rem;
+  transition: swift-ease-out(transform);
+}
+
+.field-group {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  row-gap: 0px;
+  justify-content: space-between;
+}
+
+.field {
+  width: 100%;
+}
+
+.form-auth-rsi {
+  padding-top: 10px;
+  width: 100%;
+}
+
+mat-form-field.correoInstitucional input.loginCorreoInstitucional {
+  width: calc(53% - 10px);
+}
+
+mat-form-field.correoInstitucional mat-select.dominioCorreoInstitucional {
+  width: calc(43% - 10px);
+}
+
+mat-form-field.correoInstitucional span.at {
+  margin-left: 5px;
+  margin-right: 5px;
+}
