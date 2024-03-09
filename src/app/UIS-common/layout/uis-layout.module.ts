@@ -171,4 +171,4 @@ import { SideModuleBarComponent } from "./side-module-bar/side-module-bar.compon
     ...I18N_UIS.lazy,
   ],
 })
-export class UisLayoutModule {}
+export class UisLayoutModule { }

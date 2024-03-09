@@ -16,4 +16,5 @@ import { IMPORTS_CAPACITACION } from './imports.module';
   ],
   providers: [IMaskPipe, ...MATERIAL_PROVIDERS],
 })
-export class CapacitacionModule {}
+
+export class CapacitacionModule { }
