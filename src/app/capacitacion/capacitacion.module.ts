@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MaterialModule } from '../material/material.module';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [...IMPORTS_CAPACITACION.components],
@@ -18,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     FormsModule,
     MatInputModule,
+    MatCardModule,
     CommonModule,
     AdminRoutingModule,
     RoutingOverridePipe,

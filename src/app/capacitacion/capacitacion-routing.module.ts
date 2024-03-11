@@ -6,7 +6,6 @@ import { RouteGuard } from '@UIS-common/layout/core/authentication/routes/route-
 import { RoutingOverridePipe } from 'src/app/remote-entry/pipes/routing-override.pipe';
 import { RoutesService } from '@UIS-common/layout/core/authentication/routes/routes.service';
 import { UisLayoutComponent } from '@UIS-common/layout/app-layout/uis-layout.component';
-import { TestComponent } from './test/test.component';
 import { PortadaComponent } from './portada/portada.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 
@@ -24,6 +23,7 @@ const routes: Routes = [
         path: 'portada',
         component: PortadaComponent,
       },
+
       {
         path: 'calculator',
         component: CalculatorComponent,
@@ -45,4 +45,4 @@ const routes: Routes = [
   exports: [RouterModule, FormsModule],
   providers: [RoutingOverridePipe, RoutesService, RouteGuard],
 })
-export class AdminRoutingModule {}
+export class AdminRoutingModule { }
