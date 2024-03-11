@@ -6,7 +6,6 @@ import { RouteGuard } from '@UIS-common/layout/core/authentication/routes/route-
 import { RoutingOverridePipe } from 'src/app/remote-entry/pipes/routing-override.pipe';
 import { RoutesService } from '@UIS-common/layout/core/authentication/routes/routes.service';
 import { UisLayoutComponent } from '@UIS-common/layout/app-layout/uis-layout.component';
-import { TestComponent } from './test/test.component';
 import { PortadaComponent } from './portada/portada.component';
 
 const routes: Routes = [
@@ -23,17 +22,6 @@ const routes: Routes = [
         path: 'portada',
         component: PortadaComponent,
       },
-      {
-        path: 'test',
-        component: TestComponent,
-      },
-      // {
-      //   path: 'autoservicio/informacion-basica',
-      //   loadChildren: () =>
-      //     import(
-      //       './mi-historia-laboral/informacion-basica/informacion-basica.module'
-      //     ).then((m) => m.InformacionBasicaModule),
-      // },
     ],
     canActivateChild: [RouteGuard],
   },
@@ -44,4 +32,4 @@ const routes: Routes = [
   exports: [RouterModule, FormsModule],
   providers: [RoutingOverridePipe, RoutesService, RouteGuard],
 })
-export class AdminRoutingModule {}
+export class AdminRoutingModule { }
