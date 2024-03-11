@@ -5,10 +5,12 @@ import { MATERIAL_PROVIDERS } from 'src/app/material/providers';
 import { RoutingOverridePipe } from 'src/app/remote-entry/pipes/routing-override.pipe';
 import { AdminRoutingModule } from './capacitacion-routing.module';
 import { IMPORTS_CAPACITACION } from './imports.module';
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
   declarations: [...IMPORTS_CAPACITACION.components],
   imports: [
+    MaterialModule,
     CommonModule,
     AdminRoutingModule,
     RoutingOverridePipe,

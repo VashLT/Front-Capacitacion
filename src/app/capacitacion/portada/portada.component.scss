@@ -1,3 +1,65 @@
 :host {
   display: block;
+
+  .calculator1{
+    margin-top: 80px;
+    .display {
+      border: 1px solid lightgray;
+      width: 100px;
+      height: 20px;
+      text-align: right;
+      margin-bottom: 15px;
+    }
+    
+    .num-buttons {
+      display: grid;
+      /* height: 300px; */
+      width: 100%;
+      justify-items: center;
+      grid-template-columns: 33px 33px 33px;
+      grid-template-rows: 30px 30px 30px 30px;
+      grid-template-areas: 
+        ". . ."
+        ". . ."
+        ". . ."
+        ". center .";
+    }
+    
+    .button-0 {
+      grid-area: center
+    }
+    
+    .operator-buttons {
+      display: grid;
+      width: 100%;
+      justify-items: center;
+      grid-template-columns: 25px 25px 25px 25px;
+    }
+    
+    .equals {
+      margin-top: 25px;
+      width: 100px;
+      height: 25px;
+      background-color: yellow;
+      color: black;
+      text-align: center;
+    }
+  }
+
+  .calculator2{
+
+    .calculator {
+      display: grid;
+      grid-template-rows: repeat(6, 1fr);
+      width: 300px;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+      font-family: sans-serif;
+    }
+    
+    .display {
+      background-color: #eee;
+      text-align: right; /* Assuming you want the text to be right-aligned */
+    }    
+  }
 }
