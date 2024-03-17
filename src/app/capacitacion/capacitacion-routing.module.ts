@@ -7,6 +7,7 @@ import { RoutingOverridePipe } from 'src/app/remote-entry/pipes/routing-override
 import { RoutesService } from '@UIS-common/layout/core/authentication/routes/routes.service';
 import { UisLayoutComponent } from '@UIS-common/layout/app-layout/uis-layout.component';
 import { PortadaComponent } from './portada/portada.component';
+import { CalculatorComponent } from './calculator/calculator.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
         path: 'portada',
         component: PortadaComponent,
       },
+      {
+        path: 'calculator',
+        component: CalculatorComponent
+      }
     ],
   },
 ];
