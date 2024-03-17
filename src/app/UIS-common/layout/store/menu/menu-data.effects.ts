@@ -34,14 +34,6 @@ export class MenuEffect extends UnsubscriptorService {
           this.menuDataService.getMenuData(action.slug).pipe(
             map((currentNavigation: CurrentNavigation) => {
               /**
-               * rawMenus = currentNavigation
-               * temporalmente sigue asignando currentNavigation
-               */
-              localStorage.setItem(
-                "currentNavigation",
-                JSON.stringify(currentNavigation)
-              );
-              /**
                * El usuario no tiene permisos para ningún menú
                */
               if (
