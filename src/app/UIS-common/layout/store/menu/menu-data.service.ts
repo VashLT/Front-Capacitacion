@@ -27,7 +27,6 @@ export class MenuDataService {
     //     }
     //   )
     mockMenusResponse.SIDE_MENU[0].HIJOS = menus
-      .filter((route) => Boolean(route.path))
       .map((route, i) => ({
         ID: 3 + i,
         ICONO: `{"type":"material","value":"${route.icon ? route.icon : 'star'}","class":""}`,
