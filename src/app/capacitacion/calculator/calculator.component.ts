@@ -6,64 +6,71 @@ import { Component } from '@angular/core';
   styleUrls: ['./calculator.component.scss']
 })
 export class CalculatorComponent {
-  input1: number = null;
-  input2: number = null;
-  resultado: number = null;
-
-  sumar(): void {
-    this.resultado = this.input1 + this.input2;
-  }
-
 
 
   // Calculadora 1
 
+  display = '';
+  primerOperando: number | null = null;
+  segundoOperando: number | null = null;
+  operacion: string | null = '';
 
-
-  display = '0';
-  firstValue: number | null = null;
-  action: string | null = null;
   
   numClick(val) {
-      if (this.display === '0') {
-          this.display = val.toString();
-      } else {
-          this.display = `${this.display}${val}`;
-      }
+      this.display += val;
+
+      if(this.operacion !== '') {
+        // Si hay una operación en curso, el segundo operando será lo que hay después del signo de operación
+        const partes = this.display.split(' ');
+        this.segundoOperando = parseFloat(partes[partes.length - 1]);
+      }    
   }
-  
-  oper(action) {
-      if (this.action) {
-          this.calculate(); // Realizar cálculo previo si hay una acción pendiente
-      }
-      this.firstValue = parseFloat(this.display);
-      this.action = action;
-      this.display = ' ';
+
+  oper(operacion) {
+
+    // Si hay un valor en el display y aún no hay una operación, guardamos el primer operando
+    if (this.display !== '' && this.operacion === ''){
+      this.primerOperando = parseFloat(this.display);
+      this.operacion = operacion;
+      this.display += ' ' + operacion + ' ';
+    } else {
+        return
+    }
   }
   
   calculate() {
-      const a = this.firstValue;
-      const b = parseFloat(this.display);
+      const a = this.primerOperando;
+      const b = this.segundoOperando;
+
+      // si aún no hay segundo operando, que no haga ningún cálculo aún
+      if(this.segundoOperando === null){
+        return
+      }
   
       let result;
-      if (this.action === 'm') {
+      if (this.operacion === '*') {
           result = a * b;
-      } else if (this.action === 'd') {
+      } else if (this.operacion === '/') {
           result = a / b;
-      } else if (this.action === 'a') {
+      } else if (this.operacion === '+') {
           result = a + b;
-      } else if (this.action === 's') {
+      } else if (this.operacion === '-') {
           result = a - b;
       }
     
-      this.firstValue = result;
       this.display = result.toString();
+      // Hacemos que el primer operando sea igual a resultado para seguir haciendo operaciones y este sea el primer operando
+      this.primerOperando = result;
+      this.segundoOperando = null;
+      this.operacion = '';
+
   }
   
   resetCalculator() {
-      this.display = '0';
-      this.firstValue = null;
-      this.action = null;
+      this.display = '';
+      this.primerOperando = null;
+      this.segundoOperando = null;
+      this.operacion = '';
   }
 
 }
