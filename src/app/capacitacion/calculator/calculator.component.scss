@@ -1,48 +1,50 @@
 :host {
-    display: block;
-  
-    .calculator1{
-      margin-top: 80px;
-      .display {
-        border: 1px solid lightgray;
-        width: 100px;
-        height: 20px;
-        text-align: right;
-        margin-bottom: 15px;
-      }
-      
-      .num-buttons {
-        display: grid;
-        /* height: 300px; */
-        width: 100%;
-        justify-items: center;
-        grid-template-columns: 33px 33px 33px 33px;
-        grid-template-rows: 30px 30px 30px 30px;
-        grid-template-areas: 
-          ". . . ."
-          ". . . ."
-          ". . . ."
-          ". cero . menos";
+  display: block;
+}
+
+.calculator {
+  margin: 0 auto;
+  width: 332px;
+
+  & .display {
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    text-align: right;
+    padding: 16px;
+    padding-bottom: 4px;
+    font-size: 20px;
+    font-weight: 500;
+    padding-right: 8px;
+  }
+
+  & .num-buttons {
+    display: flex;
+    row-gap: 4px;
+    column-gap: 4px;
+    flex-wrap: wrap;
+
+    & button {
+      padding: 8px;
+      background-color: #f1f3f4;
+      color: #1c1c1c;
+      border-radius: 8px;
+      width: 80px;
+      border: none;
+      cursor: pointer;
+
+      &.oper-button {
+        background-color: #dadce0;
       }
 
-      .bottom {
-        display: flex;
-      }
-      
-      .button-0 {
-        grid-area: cero;
+      &.compute-button {
+        background-color: #4285f4;
+        color: white;
       }
 
-      .button-s{
-        grid-area: menos;
-      }
-      
-      .equals {
-        width: 100px;
-        height: 25px;
-        background-color: yellow;
-        color: black;
-        text-align: center;
+      &:hover {
+        filter: brightness(0.9);
       }
     }
   }
+}
