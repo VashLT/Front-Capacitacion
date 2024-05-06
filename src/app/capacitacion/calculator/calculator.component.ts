@@ -1,11 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { EjemploService } from '../service/ejemplo.service';
 
 @Component({
   selector: 'app-calculator',
   templateUrl: './calculator.component.html',
   styleUrls: ['./calculator.component.scss']
 })
-export class CalculatorComponent {
+export class CalculatorComponent implements OnInit {
+    nombreCompartido: string = '';
+
+  
+    constructor(private ejemploService: EjemploService) {}
+  
+    ngOnInit(): void {
+        this.nombreCompartido = this.ejemploService.getNombre();
+      }
+
+    
     display = '';
     primerOperando: number;
     segundoOperando: number;
