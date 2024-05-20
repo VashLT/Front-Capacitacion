@@ -8,6 +8,9 @@ import { RoutesService } from '@UIS-common/layout/core/authentication/routes/rou
 import { UisLayoutComponent } from '@UIS-common/layout/app-layout/uis-layout.component';
 import { PortadaComponent } from './portada/portada.component';
 import { CalculatorComponent } from './calculator/calculator.component';
+import { ObservablesComponent } from './observables/observables.component';
+import { ListaTareasComponent } from './lista-tareas/lista-tareas.component';
+import { FormulariosComponent } from './formularios/formularios.component';
 
 const routes: Routes = [
   {
@@ -26,6 +29,18 @@ const routes: Routes = [
       {
         path: 'calculator',
         component: CalculatorComponent
+      },
+      {
+        path: 'observables',
+        component: ObservablesComponent
+      },
+      {
+        path: 'lista-tareas',
+        component: ListaTareasComponent
+      },
+      {
+        path: 'formularios',
+        component: FormulariosComponent
       }
     ],
   },

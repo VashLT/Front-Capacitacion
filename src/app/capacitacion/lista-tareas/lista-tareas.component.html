@@ -1,0 +1,3 @@
+@for (tarea of tareas; track $index) {
+    <app-tarea [tarea]="tarea" (tareaCompletada)="gestionarTareaCompletada()"/>
+}
