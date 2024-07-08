@@ -1,0 +1,36 @@
+:host {
+  display: block;
+}
+
+div {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+
+picture {
+  margin: 0 auto;
+}
+
+img {
+  max-height: 280px;
+}
+
+h2 {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.category {
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+hr {
+  width: 100%;
+  border-color: rgba(234, 234, 234, 0.252);
+}

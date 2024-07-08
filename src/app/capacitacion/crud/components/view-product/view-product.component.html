@@ -1,0 +1,11 @@
+<div>
+    <picture>
+        <img [src]="data.producto.image" alt="Foto de {{data.producto.title}}"/>
+    </picture>
+    <em>{{ (data.producto.price * 4000) | currencyNew: 'COP':'$':'1.0-100'}} COP</em>
+    <h2>{{ data.producto.title }}</h2>
+    <h3 class="category">{{ data.producto.category }}</h3>
+    <hr />
+    <h3>Descripción</h3>
+    <p>{{ data.producto.description}}</p>
+</div>

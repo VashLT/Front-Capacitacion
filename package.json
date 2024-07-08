@@ -4,7 +4,7 @@
   "license": "Private",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -o",
     "build": "ng build",
     "build:base": "ng build --source-map=false --progress=false",
     "build:predev": "yarn build:base --configuration=predev",
@@ -15,6 +15,7 @@
     "analize": "webpack-bundle-analyzer dist/capacitacion/stats.json",
     "compress": "gulp compress",
     "test": "ng test",
+    "test:watch": "ng test --watch",
     "lint": "ng lint",
     "lint:fix": "yarn run lint --fix",
     "e2e": "ng e2e",

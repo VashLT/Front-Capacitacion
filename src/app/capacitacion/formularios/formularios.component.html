@@ -72,11 +72,14 @@
             <mat-form-field appearance="fill">
                 <mat-label>Confirm Password</mat-label>
                 <input matInput type="password" formControlName="confirmPassword" required>
-                <mat-error *ngIf="registerForm.get('confirmPassword').hasError('required')">
-                    Debes confirmar la contraseña
-                </mat-error>
-                <mat-error *ngIf="registerForm.get('confirmPassword').hasError('minlength')">
-                    La contraseña debe
+                <mat-error>
+                    {{
+                        registerForm.get('confirmPassword').hasError('diff') 
+                            ? 'Las contraseñas deben ser iguales' 
+                            : registerForm.get('confirmPassword').hasError('minLength') 
+                            ? "La contraseña debe tener al menos 6 caracteres" 
+                            : "Debes confirmar la contraseña"
+                    }}
                 </mat-error>
             </mat-form-field>
         </div>
@@ -92,12 +95,50 @@
                 El Género es obligatorio
             </mat-error>
         </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Telefono</mat-label>
+            <uis-phone-intl-input
+                [preferredCountries]="['co', 'us', 'gb']"
+                [enablePlaceholder]="true"
+                [enableSearch]="true"
+                name="telefonoCel"
+                formControlName="phone"
+                [placeholder]="'Digite el número de teléfono'"
+                required
+            >
+            </uis-phone-intl-input>
+        </mat-form-field>
+
     
         <mat-form-field appearance="fill">
             <mat-label>Bio</mat-label>
             <textarea matInput formControlName="bio"></textarea>
         </mat-form-field>
+
+        <mat-select-two
+            label="Color favorito"
+            placeholder="Selecciona un color"
+            [control]="registerForm.controls.favColor"
+            [value]="'id'"
+            [name]="'name'"
+            [busqueda]="colorSearch"
+            [required]="true"
+            [options]="colors"
+            [config]="colorConfig"
+        >
+        </mat-select-two>
+
+        @if (selectedFileUrl) {
+            <img [src]="selectedFileUrl" />
+        }
+        <app-file-chooser 
+            (files)="fileSelect($event)" 
+            [insertMode]="true"
+        >
+        </app-file-chooser>
     
-        <button mat-raised-button color="primary" type="submit">Registrar</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Registrar</button>
     </form>
 </section>

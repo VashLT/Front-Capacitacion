@@ -12,6 +12,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectTwoModule } from '@uis/uis-lib/components/mat-select-two';
+import { FileChooserModule } from '@uis/uis-lib/components/file-chooser';
+import { PhoneIntlInputComponent } from '@uis/uis-lib/components/phone-selector';
+import { MatTableFullModule } from '@uis/uis-lib/components/mat-table-full';
+import { PipesModule } from '@uis/uis-lib/pipes';
 
 @NgModule({
   declarations: [...IMPORTS_CAPACITACION.components],
@@ -22,7 +27,12 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatIconModule,
     MatSelectModule,
+    MatSelectTwoModule,
+    FileChooserModule,
+    PhoneIntlInputComponent,
     MatCardModule,
+    MatTableFullModule,
+    PipesModule,
     CommonModule,
     AdminRoutingModule,
     RoutingOverridePipe,

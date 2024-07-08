@@ -11,6 +11,7 @@ import { CalculatorComponent } from './calculator/calculator.component';
 import { ObservablesComponent } from './observables/observables.component';
 import { ListaTareasComponent } from './lista-tareas/lista-tareas.component';
 import { FormulariosComponent } from './formularios/formularios.component';
+import { CrudComponent } from './crud/crud.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
       {
         path: 'formularios',
         component: FormulariosComponent
+      },
+      {
+        path: 'crud',
+        component: CrudComponent
       }
     ],
   },
